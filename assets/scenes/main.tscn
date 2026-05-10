@@ -1,0 +1,994 @@
+[gd_scene format=3 uid="uid://k43vbpdmcxxc"]
+
+[ext_resource type="Script" uid="uid://c2cw5qs5ukg3n" path="res://assets/scripts/main.gd" id="1_kpi06"]
+[ext_resource type="Script" uid="uid://dp58rmja51h2v" path="res://assets/scripts/center_window.gd" id="1_mr7gh"]
+[ext_resource type="AudioStream" uid="uid://b8xdp26bjlt43" path="res://assets/third-party/kenney.nl/interface-sounds/drop_003.ogg" id="3_dfgan"]
+[ext_resource type="AudioStream" uid="uid://b5f8w3k6e2ox6" path="res://assets/third-party/kenney.nl/interface-sounds/glass_002.ogg" id="4_etxf0"]
+[ext_resource type="Script" uid="uid://7vm2cqd5sfvw" path="res://assets/scripts/lan_join_window.gd" id="5_6rsl6"]
+[ext_resource type="Script" uid="uid://hvj24q21cq2j" path="res://assets/scripts/lan_manual_join_window.gd" id="5_xplbd"]
+[ext_resource type="Script" uid="uid://c1sxa0uldiq8i" path="res://assets/scripts/settings_window.gd" id="7_6rsl6"]
+[ext_resource type="Script" uid="uid://xjyhxe1tr7ct" path="res://assets/scripts/console_placeholder.gd" id="7_xplbd"]
+[ext_resource type="Script" uid="uid://3eur1rol8lx2" path="res://assets/scripts/help_button.gd" id="9_p5d64"]
+[ext_resource type="Script" uid="uid://p2wiu1i8rco1" path="res://assets/scripts/framerate_panel.gd" id="10_48cn3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nb5qc"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_xplbd"]
+font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etxf0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5d64"]
+
+[sub_resource type="Animation" id="Animation_vesw4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeCanvasLayer/FadeColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xplbd"]
+resource_name = "quit"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeCanvasLayer/FadeColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"quit"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rsl6"]
+_data = {
+&"RESET": SubResource("Animation_vesw4"),
+&"quit": SubResource("Animation_xplbd")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5d64"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.6862745)
+corner_radius_bottom_right = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_48cn3"]
+
+[node name="Main" type="Node3D" unique_id=83895769]
+script = ExtResource("1_kpi06")
+
+[node name="ConsolePlaceholder" type="Node" parent="." unique_id=1218939065]
+script = ExtResource("7_xplbd")
+
+[node name="Menu" type="Control" parent="." unique_id=925455986]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=415840204]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu" unique_id=1929927225]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Menu/CenterContainer" unique_id=521354843]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer/PanelContainer" unique_id=896473466]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=692098750]
+layout_mode = 2
+text = "Gravity Bumpers"
+label_settings = SubResource("LabelSettings_nb5qc")
+
+[node name="ContinueButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=539182906]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Continue"
+
+[node name="NicknameLineEdit" type="LineEdit" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=276160471]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Nickname"
+alignment = 1
+max_length = 30
+caret_blink = true
+
+[node name="LanHBoxContainer" type="HBoxContainer" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=2047978799]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer" unique_id=904142498]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer" unique_id=1783761862]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="StartButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=1506614533]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Start"
+
+[node name="StartLabel" type="Label" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=597279753]
+unique_name_in_owner = true
+modulate = Color(0.67, 0.67, 0.67, 1)
+layout_mode = 2
+text = "(Wait for others to join before start)"
+label_settings = SubResource("LabelSettings_xplbd")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SettingsButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=1431336630]
+layout_mode = 2
+text = "Settings"
+
+[node name="AboutButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=2083685716]
+layout_mode = 2
+text = "About"
+
+[node name="LeaveButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=1031089118]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Leave"
+
+[node name="QuitButton" type="Button" parent="Menu/CenterContainer/PanelContainer/VBoxContainer" unique_id=1561157439]
+layout_mode = 2
+text = "Quit"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=1880206096]
+unique_name_in_owner = true
+stream = ExtResource("3_dfgan")
+volume_db = -5.0
+bus = &"UI"
+
+[node name="ButtonHoverSound" type="AudioStreamPlayer" parent="." unique_id=1235109806]
+unique_name_in_owner = true
+stream = ExtResource("4_etxf0")
+volume_db = -15.0
+bus = &"UI"
+
+[node name="Dialogs" type="Node" parent="." unique_id=938120878]
+
+[node name="LanJoinWindow" type="Window" parent="Dialogs" unique_id=721035876]
+process_mode = 4
+transparent_bg = true
+oversampling_override = 1.0
+title = "Join"
+position = Vector2i(0, 36)
+size = Vector2i(400, 350)
+visible = false
+unresizable = true
+transparent = true
+popup_window = true
+script = ExtResource("5_6rsl6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/LanJoinWindow" unique_id=196065956]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Dialogs/LanJoinWindow/VBoxContainer" unique_id=2088668655]
+layout_mode = 2
+text = "Available lobbies:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Dialogs/LanJoinWindow/VBoxContainer" unique_id=2064926081]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LobbiesPanelsContainer" type="VBoxContainer" parent="Dialogs/LanJoinWindow/VBoxContainer/ScrollContainer" unique_id=525615771]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogs/LanJoinWindow/VBoxContainer" unique_id=1420345072]
+layout_mode = 2
+
+[node name="ManualJoinButton" type="Button" parent="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer" unique_id=508675794]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join by IP"
+
+[node name="CancelButton" type="Button" parent="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer" unique_id=1711685216]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="LobbyAdvertisementTimer" type="Timer" parent="Dialogs/LanJoinWindow" unique_id=2002402834]
+autostart = true
+
+[node name="LanManualJoinWindow" type="Window" parent="Dialogs" unique_id=1740090144]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Join by IP"
+position = Vector2i(0, 36)
+size = Vector2i(150, 75)
+visible = false
+unresizable = true
+transparent = true
+popup_window = true
+script = ExtResource("5_xplbd")
+ip_line_edit_stylebox = SubResource("StyleBoxFlat_etxf0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/LanManualJoinWindow" unique_id=1990987896]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IPLineEdit" type="LineEdit" parent="Dialogs/LanManualJoinWindow/VBoxContainer" unique_id=1101207711]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_etxf0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_etxf0")
+placeholder_text = "IP address"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogs/LanManualJoinWindow/VBoxContainer" unique_id=1731581879]
+layout_mode = 2
+
+[node name="JoinWindowJoinButton" type="Button" parent="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer" unique_id=353813634]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Join"
+
+[node name="CancelButton" type="Button" parent="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer" unique_id=1733323891]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="KickedAcceptDialog" type="Window" parent="Dialogs" unique_id=975821845]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Disconnected"
+position = Vector2i(0, 36)
+size = Vector2i(550, 100)
+visible = false
+unresizable = true
+transparent = true
+script = ExtResource("1_mr7gh")
+
+[node name="KickedDialogLabel" type="Label" parent="Dialogs/KickedAcceptDialog" unique_id=104530230]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Dialogs/KickedAcceptDialog" unique_id=1815051726]
+custom_minimum_size = Vector2(150, 32)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="LANDiscoveryFailedDialog" type="Window" parent="Dialogs" unique_id=44583318]
+unique_name_in_owner = true
+transparent_bg = true
+oversampling_override = 1.0
+title = "Warning"
+position = Vector2i(0, 36)
+size = Vector2i(400, 100)
+visible = false
+unresizable = true
+transparent = true
+script = ExtResource("1_mr7gh")
+
+[node name="LANDiscoveryFailedDialogLabel" type="Label" parent="Dialogs/LANDiscoveryFailedDialog" unique_id=1756003756]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "Lobby discovery unavailable"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="Dialogs/LANDiscoveryFailedDialog" unique_id=795479849]
+custom_minimum_size = Vector2(150, 32)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="AboutAcceptDialog" type="Window" parent="Dialogs" unique_id=2128544616]
+transparent_bg = true
+oversampling_override = 1.0
+title = "About"
+position = Vector2i(0, 36)
+size = Vector2i(550, 250)
+visible = false
+unresizable = true
+transparent = true
+script = ExtResource("1_mr7gh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/AboutAcceptDialog" unique_id=1467516199]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Dialogs/AboutAcceptDialog/VBoxContainer" unique_id=861461610]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/AboutAcceptDialog/VBoxContainer/ScrollContainer" unique_id=1931796650]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CreditsLabel" type="RichTextLabel" parent="Dialogs/AboutAcceptDialog/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1830214640]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+text = "
+
+[hr]
+
+[center][b]CREDITS[/b]
+
+[b]Development[/b]
+[url=https://github.com/ghkoty]ghKoty[/url] — Lead Programming & Game Design
+
+[hr]
+
+[b]Powered By[/b]
+[b]Godot Engine[/b]
+[url=https://godotengine.org]Official Website[/url]
+[url=https://godotengine.org/license]MIT License[/url]
+
+[b]GodotSteam[/b]
+[url=https://godotsteam.com]Official Website[/url]
+[url=https://codeberg.org/godotsteam/godotsteam/src/branch/godot4/license.md]MIT License[/url]
+
+[hr]
+
+[b]Third-Party Assets[/b]
+[b]UI Audio:[/b] [url=https://kenney.nl]Kenney.nl[/url] [url=https://creativecommons.org/publicdomain/zero/1.0/](CC0 1.0 Universal)[/url]
+[b]Explosion Audio Effect:[/b] [url=https://freesound.org/people/modusmogulus/sounds/737321/]Freesound.org[/url] [url=https://creativecommons.org/publicdomain/zero/1.0/](CC0 1.0 Universal)[/url]
+
+[hr]
+
+[b]License[/b]
+This project is open-source under the [b][url=https://github.com/ghKoty/gravity-bumpers#MIT-1-ov-file]MIT License[/url][/b].
+
+[i]Thank you for playing![/i][/center]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+selection_enabled = true
+
+[node name="OKButton" type="Button" parent="Dialogs/AboutAcceptDialog/VBoxContainer" unique_id=336664304]
+custom_minimum_size = Vector2(150, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OK"
+
+[node name="InLobbyDialog" type="Window" parent="Dialogs" unique_id=170784750]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Waiting"
+position = Vector2i(0, 36)
+size = Vector2i(550, 100)
+visible = false
+unresizable = true
+transparent = true
+script = ExtResource("1_mr7gh")
+
+[node name="Label" type="Label" parent="Dialogs/InLobbyDialog" unique_id=517495679]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+text = "Waiting for host to start..."
+horizontal_alignment = 1
+
+[node name="LeaveButton" type="Button" parent="Dialogs/InLobbyDialog" unique_id=1689814875]
+custom_minimum_size = Vector2(150, 32)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Leave lobby"
+
+[node name="SettingsWindow" type="Window" parent="Dialogs" unique_id=1408605020]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Settings"
+position = Vector2i(0, 36)
+size = Vector2i(400, 270)
+visible = false
+unresizable = true
+transparent = true
+script = ExtResource("7_6rsl6")
+
+[node name="HelpPopupPanel" type="PopupPanel" parent="Dialogs/SettingsWindow" unique_id=379418011]
+unique_name_in_owner = true
+oversampling_override = 1.0
+size = Vector2i(450, 53)
+
+[node name="HelpLabel" type="Label" parent="Dialogs/SettingsWindow/HelpPopupPanel" unique_id=1126422279]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 435.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_p5d64")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/SettingsWindow" unique_id=1602396914]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabBar" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=47728716]
+layout_mode = 2
+current_tab = 0
+tab_alignment = 1
+close_with_middle_mouse = false
+select_with_rmb = true
+tab_count = 2
+tab_0/title = "General"
+tab_1/title = "Graphics"
+
+[node name="GeneralSettingsContainer" type="VBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=720869768]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=1651303237]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=849094156]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/HBoxContainer" unique_id=387180899]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Mouse Sensitivity"
+
+[node name="SensitivityLabel" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/HBoxContainer" unique_id=288383583]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0.00"
+horizontal_alignment = 2
+
+[node name="SensitivitySlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=445446561]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.05
+max_value = 4.0
+step = 0.05
+value = 0.1
+
+[node name="Spacer2" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=1999571075]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="AutoRestartHBoxContainer2" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=385090207]
+layout_mode = 2
+
+[node name="AutoRestartCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2" unique_id=363342626]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Auto Restart"
+
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2" unique_id=879569807]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "Automatically restarts round after 3 seconds"
+
+[node name="TouchControlsHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=445072422]
+layout_mode = 2
+
+[node name="TouchControlsCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer" unique_id=1560443055]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Touch Controls"
+
+[node name="GraphicsSettingsContainer" type="ScrollContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=751851824]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer" unique_id=134140058]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer" unique_id=1803301088]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FullscreenHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=1050906406]
+layout_mode = 2
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer" unique_id=1385643350]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fullscreen"
+
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer" unique_id=1777522944]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "Switches between Windowed and Fullscreen modes. Does nothing on mobile devices."
+
+[node name="Spacer" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=236986260]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="UIScaleHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=1358732537]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/UIScaleHBoxContainer" unique_id=684048119]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "UI Scale"
+
+[node name="UIScaleLabel" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/UIScaleHBoxContainer" unique_id=809207309]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="UIScaleSlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=1745845169]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.5
+max_value = 2.0
+step = 0.05
+value = 1.0
+scrollable = false
+
+[node name="Spacer2" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=116222591]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="AAHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=827331088]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer" unique_id=146477292]
+layout_mode = 2
+text = "Anti Aliasing"
+
+[node name="Spacer" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer" unique_id=99631683]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="AAMenuButton" type="OptionButton" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer" unique_id=244966693]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "MSAA 2x"
+popup/item_1/id = 1
+popup/item_2/text = "MSAA 4x"
+popup/item_2/id = 2
+popup/item_3/text = "MSAA 8x"
+popup/item_3/id = 3
+
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer" unique_id=1296859682]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "Smooths out jagged edges on 3D objects. Higher values provide a cleaner image but significantly increase GPU load. Disable this if you experience screen flickering or heavy stuttering."
+
+[node name="Spacer3" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=816604216]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="RenderScaleHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=1719817048]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer" unique_id=29749743]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Render Scale"
+
+[node name="RenderScaleLabel" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer" unique_id=665446971]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer" unique_id=1055795263]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "Adjusts the internal resolution of 3D rendering without changing the UI sharpness. Lowering this value can drastically boost FPS on low-end devices at the cost of some image clarity."
+
+[node name="RenderScaleSlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=40849777]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.5
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+
+[node name="Spacer4" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=6824531]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="GlowHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=297802664]
+layout_mode = 2
+
+[node name="GlowCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer" unique_id=1282181546]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Glow"
+
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer" unique_id=1723136774]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "Makes bright areas of the screen bleed light into surrounding areas, creating a photographic \"bloom\" effect. Adds realism to light sources, but can increase GPU load."
+
+[node name="Spacer5" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=362511305]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="DynamicLightsHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=1227656484]
+layout_mode = 2
+
+[node name="DynamicLightsCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer" unique_id=876830275]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dynamic Lights"
+
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer" unique_id=1575472207]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "Enables real-time light sources attached to players. Disabling this can significantly improve performance on slow devices."
+
+[node name="FremerateHBoxContainer2" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=69754023]
+layout_mode = 2
+
+[node name="FramerateCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FremerateHBoxContainer2" unique_id=1486744707]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Framerate"
+
+[node name="AuthenticationTimers" type="Node" parent="." unique_id=363857355]
+
+[node name="HUD" type="CenterContainer" parent="." unique_id=944784123]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1632716166]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DashCooldownIndicator" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=48289326]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 10)
+layout_mode = 2
+mouse_filter = 2
+max_value = 2.0
+show_percentage = false
+
+[node name="Control" type="Control" parent="HUD/VBoxContainer" unique_id=1559615340]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DashClientCooldownTimer" type="Timer" parent="." unique_id=1195113913]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=829321278]
+libraries/ = SubResource("AnimationLibrary_6rsl6")
+
+[node name="ChatVBoxContainer" type="VBoxContainer" parent="." unique_id=741795944]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 300.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LANConnectTimeoutTimer" type="Timer" parent="." unique_id=2055025068]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[node name="FrameratePanelContainer" type="PanelContainer" parent="." unique_id=2008436228]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+offset_right = 75.0
+offset_bottom = 69.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p5d64")
+script = ExtResource("10_48cn3")
+
+[node name="FramerateLabel" type="Label" parent="FrameratePanelContainer" unique_id=771638333]
+layout_mode = 2
+size_flags_vertical = 1
+text = "
+"
+label_settings = SubResource("LabelSettings_48cn3")
+
+[node name="FadeCanvasLayer" type="CanvasLayer" parent="." unique_id=1530076633]
+editor_description = "Used to display FadeColorRect above all windows"
+layer = 1025
+
+[node name="FadeColorRect" type="ColorRect" parent="FadeCanvasLayer" unique_id=2083592883]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="visibility_changed" from="Menu" to="." method="_on_menu_visibility_changed"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/ContinueButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/ContinueButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/ContinueButton" to="Menu" method="hide"]
+[connection signal="focus_exited" from="Menu/CenterContainer/PanelContainer/VBoxContainer/NicknameLineEdit" to="." method="_on_nickname_line_edit_focus_exited"]
+[connection signal="text_submitted" from="Menu/CenterContainer/PanelContainer/VBoxContainer/NicknameLineEdit" to="." method="_on_nickname_line_edit_text_submitted"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer/HostButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer/HostButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer/JoinButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer/JoinButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LanHBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="Dialogs/SettingsWindow" method="popup_centered"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="Dialogs/AboutAcceptDialog" method="popup_centered"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="close_requested" from="Dialogs/LanJoinWindow" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/LanJoinWindow" to="Dialogs/LanJoinWindow" method="hide"]
+[connection signal="button_down" from="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer/ManualJoinButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer/ManualJoinButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer/ManualJoinButton" to="Dialogs/LanManualJoinWindow" method="show"]
+[connection signal="button_down" from="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/LanJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="Dialogs/LanJoinWindow" method="hide"]
+[connection signal="timeout" from="Dialogs/LanJoinWindow/LobbyAdvertisementTimer" to="Dialogs/LanJoinWindow" method="_on_lobby_advertisement_timer_timeout"]
+[connection signal="close_requested" from="Dialogs/LanManualJoinWindow" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/LanManualJoinWindow" to="Dialogs/LanManualJoinWindow" method="hide"]
+[connection signal="text_changed" from="Dialogs/LanManualJoinWindow/VBoxContainer/IPLineEdit" to="Dialogs/LanManualJoinWindow" method="_on_ip_line_edit_text_changed"]
+[connection signal="text_submitted" from="Dialogs/LanManualJoinWindow/VBoxContainer/IPLineEdit" to="Dialogs/LanManualJoinWindow" method="_on_ip_line_edit_text_submitted"]
+[connection signal="button_down" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/JoinWindowJoinButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/JoinWindowJoinButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/JoinWindowJoinButton" to="Dialogs/LanManualJoinWindow" method="_on_lan_join_button_pressed"]
+[connection signal="button_down" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="Dialogs/LanManualJoinWindow" method="hide"]
+[connection signal="close_requested" from="Dialogs/KickedAcceptDialog" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/KickedAcceptDialog" to="Dialogs/KickedAcceptDialog" method="hide"]
+[connection signal="button_down" from="Dialogs/KickedAcceptDialog/ContinueButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/KickedAcceptDialog/ContinueButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/KickedAcceptDialog/ContinueButton" to="Dialogs/KickedAcceptDialog" method="hide"]
+[connection signal="close_requested" from="Dialogs/LANDiscoveryFailedDialog" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/LANDiscoveryFailedDialog" to="Dialogs/LANDiscoveryFailedDialog" method="hide"]
+[connection signal="button_down" from="Dialogs/LANDiscoveryFailedDialog/ContinueButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/LANDiscoveryFailedDialog/ContinueButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/LANDiscoveryFailedDialog/ContinueButton" to="Dialogs/LANDiscoveryFailedDialog" method="hide"]
+[connection signal="close_requested" from="Dialogs/AboutAcceptDialog" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/AboutAcceptDialog" to="Dialogs/AboutAcceptDialog" method="hide"]
+[connection signal="meta_clicked" from="Dialogs/AboutAcceptDialog/VBoxContainer/ScrollContainer/VBoxContainer/CreditsLabel" to="." method="_on_credits_label_meta_clicked"]
+[connection signal="button_down" from="Dialogs/AboutAcceptDialog/VBoxContainer/OKButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/AboutAcceptDialog/VBoxContainer/OKButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/AboutAcceptDialog/VBoxContainer/OKButton" to="Dialogs/AboutAcceptDialog" method="hide"]
+[connection signal="pressed" from="Dialogs/InLobbyDialog/LeaveButton" to="." method="leave_lobby"]
+[connection signal="close_requested" from="Dialogs/SettingsWindow" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/SettingsWindow" to="Dialogs/SettingsWindow" method="hide"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/TabBar" to="ButtonHoverSound" method="play"]
+[connection signal="tab_hovered" from="Dialogs/SettingsWindow/VBoxContainer/TabBar" to="Dialogs/SettingsWindow" method="_on_tab_bar_tab_hovered"]
+[connection signal="tab_selected" from="Dialogs/SettingsWindow/VBoxContainer/TabBar" to="Dialogs/SettingsWindow" method="_on_tab_bar_tab_selected"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/SensitivitySlider" to="ButtonHoverSound" method="play"]
+[connection signal="value_changed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/SensitivitySlider" to="Dialogs/SettingsWindow" method="_on_sensitivity_slider_value_changed"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="Dialogs/SettingsWindow" method="_on_auto_restart_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" method="show_help"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="Dialogs/SettingsWindow" method="_on_touch_controls_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="Dialogs/SettingsWindow" method="_on_fullscreen_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/HelpButton" method="show_help"]
+[connection signal="drag_ended" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/UIScaleSlider" to="Dialogs/SettingsWindow" method="_on_ui_scale_slider_drag_ended"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/UIScaleSlider" to="ButtonHoverSound" method="play"]
+[connection signal="value_changed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/UIScaleSlider" to="Dialogs/SettingsWindow" method="_on_ui_scale_slider_value_changed"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/AAMenuButton" to="ButtonClickSound" method="play"]
+[connection signal="item_focused" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/AAMenuButton" to="Dialogs/SettingsWindow" method="_on_menu_button_item_focused"]
+[connection signal="item_selected" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/AAMenuButton" to="Dialogs/SettingsWindow" method="_on_menu_button_item_selected"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/AAMenuButton" to="ButtonHoverSound" method="play"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer/HelpButton" method="show_help"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer/HelpButton" method="show_help"]
+[connection signal="drag_ended" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleSlider" to="Dialogs/SettingsWindow" method="_on_render_scale_slider_drag_ended"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleSlider" to="ButtonHoverSound" method="play"]
+[connection signal="value_changed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleSlider" to="Dialogs/SettingsWindow" method="_on_render_scale_slider_value_changed"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="Dialogs/SettingsWindow" method="_on_glow_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer/HelpButton" method="show_help"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/DynamicLightsCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/DynamicLightsCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/DynamicLightsCheckButton" to="Dialogs/SettingsWindow" method="_on_dynamic_lights_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer/HelpButton" method="show_help"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FremerateHBoxContainer2/FramerateCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FremerateHBoxContainer2/FramerateCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FremerateHBoxContainer2/FramerateCheckButton" to="Dialogs/SettingsWindow" method="_on_framerate_check_button_toggled"]
+[connection signal="timeout" from="LANConnectTimeoutTimer" to="." method="_on_lan_connect_timeout"]

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ddw7ati24mm44"]
+
+[resource]
+resource_local_to_scene = true
+transparency = 1
+roughness = 0.3

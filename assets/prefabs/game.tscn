@@ -1,0 +1,611 @@
+[gd_scene format=3 uid="uid://o2tanu0mu2cm"]
+
+[ext_resource type="Script" uid="uid://br7jbf7nf1of" path="res://assets/scripts/game.gd" id="1_1ybja"]
+[ext_resource type="Script" uid="uid://woto3q2cv8vc" path="res://assets/scripts/camera.gd" id="2_kpi06"]
+[ext_resource type="Script" uid="uid://byskujadlo8yk" path="res://assets/scripts/multiplayer_spawner.gd" id="4_nf75y"]
+[ext_resource type="PackedScene" uid="uid://bkqrgjksj2510" path="res://assets/prefabs/platform.tscn" id="5_68o2v"]
+[ext_resource type="PackedScene" uid="uid://d3ilve6n2lw1x" path="res://assets/prefabs/explosive.scn" id="7_6q10f"]
+[ext_resource type="Script" uid="uid://dp58rmja51h2v" path="res://assets/scripts/center_window.gd" id="7_eymk5"]
+[ext_resource type="Script" uid="uid://c1w8nl6jqmap1" path="res://assets/scripts/touch_control.gd" id="8_68o2v"]
+[ext_resource type="Script" uid="uid://cxhgm2hjghkea" path="res://assets/scripts/button_sounds.gd" id="9_jra2i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_68o2v"]
+sky_top_color = Color(0.108, 0.23340003, 0.45, 1)
+sky_horizon_color = Color(0.1632, 0.35269338, 0.68, 1)
+sky_curve = 0.4392256
+sky_energy_multiplier = 0.5
+ground_bottom_color = Color(0.1452, 0.24346669, 0.44, 1)
+ground_horizon_color = Color(0.1632, 0.35269338, 0.68, 1)
+ground_curve = 0.25106663
+ground_energy_multiplier = 0.5
+sun_angle_max = 20.45
+sun_curve = 0.102453135
+
+[sub_resource type="Sky" id="Sky_jra2i"]
+sky_material = SubResource("ProceduralSkyMaterial_68o2v")
+
+[sub_resource type="Environment" id="Environment_6alsc"]
+background_mode = 2
+sky = SubResource("Sky_jra2i")
+tonemap_exposure = 2.0
+glow_enabled = true
+glow_intensity = 0.5
+glow_hdr_threshold = 0.3
+glow_hdr_scale = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kpi06"]
+radius = 0.1
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68o2v"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jra2i"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6alsc"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6q10f"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t4s70"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oy38a"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1dhit"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3f0sx"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5kjyk"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f78nd"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c343q"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_de0ba"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xk80i"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2b6ph"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vp4y6"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_13trc"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_17j0n"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u0cyj"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lcuog"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o30o1"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iu0s8"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p2ktf"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5nk7h"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_12j5i"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2w57o"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jvkn1"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2nonb"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vw2fe"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0512g"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_efg6g"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hk5o2"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3jgmu"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ci2bs"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4hh05"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vydip"]
+resource_local_to_scene = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ape2j"]
+resource_local_to_scene = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_jra2i"]
+font_size = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eymk5"]
+radius = 75.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68o2v"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 75
+corner_radius_top_right = 75
+corner_radius_bottom_right = 75
+corner_radius_bottom_left = 75
+corner_detail = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_68o2v"]
+font_size = 24
+
+[node name="Game" type="Node3D" unique_id=542532392]
+script = ExtResource("1_1ybja")
+min_event_time = 2.0
+max_event_time = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1568068619]
+environment = SubResource("Environment_6alsc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=885891087]
+transform = Transform3D(-0.1048409, 0.3903838, -0.9146633, 0, 0.9197319, 0.39254713, 0.994489, 0.04115499, -0.09642552, 0, 0, 0)
+sky_mode = 2
+
+[node name="DefaultCameraPosition" type="Marker3D" parent="." unique_id=1406133719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CameraContainer" type="SpringArm3D" parent="DefaultCameraPosition" unique_id=587205962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3806987, 0)
+shape = SubResource("SphereShape3D_kpi06")
+script = ExtResource("2_kpi06")
+desired_distance = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="DefaultCameraPosition/CameraContainer" unique_id=857859574]
+
+[node name="PlayersMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1380677300]
+spawn_path = NodePath(".")
+script = ExtResource("4_nf75y")
+
+[node name="Platforms" type="Node3D" parent="." unique_id=1714470393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Platform1" parent="Platforms" unique_id=754744748 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+physics_material_override = SubResource("PhysicsMaterial_68o2v")
+
+[node name="Platform2" parent="Platforms" unique_id=1141480080 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -2.5)
+physics_material_override = SubResource("PhysicsMaterial_jra2i")
+
+[node name="Platform3" parent="Platforms" unique_id=435841429 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.5)
+physics_material_override = SubResource("PhysicsMaterial_6alsc")
+
+[node name="Platform4" parent="Platforms" unique_id=2089154002 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
+physics_material_override = SubResource("PhysicsMaterial_6q10f")
+
+[node name="Platform5" parent="Platforms" unique_id=217560682 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
+physics_material_override = SubResource("PhysicsMaterial_t4s70")
+
+[node name="Platform6" parent="Platforms" unique_id=1674497801 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
+physics_material_override = SubResource("PhysicsMaterial_oy38a")
+
+[node name="Platform7" parent="Platforms" unique_id=739547612 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 7.5)
+physics_material_override = SubResource("PhysicsMaterial_1dhit")
+
+[node name="Platform8" parent="Platforms" unique_id=1454716703 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2.5)
+physics_material_override = SubResource("PhysicsMaterial_3f0sx")
+
+[node name="Platform9" parent="Platforms" unique_id=1242009765 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
+physics_material_override = SubResource("PhysicsMaterial_5kjyk")
+
+[node name="Platform10" parent="Platforms" unique_id=1949616604 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -7.5)
+physics_material_override = SubResource("PhysicsMaterial_f78nd")
+
+[node name="Platform11" parent="Platforms" unique_id=254762224 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -7.5)
+physics_material_override = SubResource("PhysicsMaterial_c343q")
+
+[node name="Platform12" parent="Platforms" unique_id=493589839 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -7.5)
+physics_material_override = SubResource("PhysicsMaterial_de0ba")
+
+[node name="Platform13" parent="Platforms" unique_id=604956867 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -7.5)
+physics_material_override = SubResource("PhysicsMaterial_xk80i")
+
+[node name="Platform14" parent="Platforms" unique_id=127967719 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -2.5)
+physics_material_override = SubResource("PhysicsMaterial_2b6ph")
+
+[node name="Platform15" parent="Platforms" unique_id=1952569472 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 2.5)
+physics_material_override = SubResource("PhysicsMaterial_vp4y6")
+
+[node name="Platform16" parent="Platforms" unique_id=1547713647 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 7.5)
+physics_material_override = SubResource("PhysicsMaterial_13trc")
+
+[node name="Platform17" parent="Platforms" unique_id=1267097430 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 12.5)
+physics_material_override = SubResource("PhysicsMaterial_17j0n")
+
+[node name="Platform18" parent="Platforms" unique_id=469765519 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 12.5)
+physics_material_override = SubResource("PhysicsMaterial_u0cyj")
+
+[node name="Platform19" parent="Platforms" unique_id=1847119640 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 12.5)
+physics_material_override = SubResource("PhysicsMaterial_lcuog")
+
+[node name="Platform20" parent="Platforms" unique_id=2012763048 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 12.5)
+physics_material_override = SubResource("PhysicsMaterial_o30o1")
+
+[node name="Platform21" parent="Platforms" unique_id=1823360737 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 12.5)
+physics_material_override = SubResource("PhysicsMaterial_iu0s8")
+
+[node name="Platform22" parent="Platforms" unique_id=2138927400 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 7.5)
+physics_material_override = SubResource("PhysicsMaterial_p2ktf")
+
+[node name="Platform23" parent="Platforms" unique_id=1711368903 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 2.5)
+physics_material_override = SubResource("PhysicsMaterial_5nk7h")
+
+[node name="Platform24" parent="Platforms" unique_id=2128786872 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -2.5)
+physics_material_override = SubResource("PhysicsMaterial_12j5i")
+
+[node name="Platform25" parent="Platforms" unique_id=94270557 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -7.5)
+physics_material_override = SubResource("PhysicsMaterial_2w57o")
+
+[node name="Platform26" parent="Platforms" unique_id=2027117532 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -12.5)
+physics_material_override = SubResource("PhysicsMaterial_jvkn1")
+
+[node name="Platform27" parent="Platforms" unique_id=1365141320 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -12.5)
+physics_material_override = SubResource("PhysicsMaterial_2nonb")
+
+[node name="Platform28" parent="Platforms" unique_id=442183784 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -12.5)
+physics_material_override = SubResource("PhysicsMaterial_vw2fe")
+
+[node name="Platform29" parent="Platforms" unique_id=47867723 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -12.5)
+physics_material_override = SubResource("PhysicsMaterial_0512g")
+
+[node name="Platform30" parent="Platforms" unique_id=420465656 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -12.5)
+physics_material_override = SubResource("PhysicsMaterial_efg6g")
+
+[node name="Platform31" parent="Platforms" unique_id=323849591 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -12.5)
+physics_material_override = SubResource("PhysicsMaterial_hk5o2")
+
+[node name="Platform32" parent="Platforms" unique_id=1810178411 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -7.5)
+physics_material_override = SubResource("PhysicsMaterial_3jgmu")
+
+[node name="Platform33" parent="Platforms" unique_id=1223407793 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -2.5)
+physics_material_override = SubResource("PhysicsMaterial_ci2bs")
+
+[node name="Platform34" parent="Platforms" unique_id=50832748 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 2.5)
+physics_material_override = SubResource("PhysicsMaterial_4hh05")
+
+[node name="Platform35" parent="Platforms" unique_id=417901809 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 7.5)
+physics_material_override = SubResource("PhysicsMaterial_vydip")
+
+[node name="Platform36" parent="Platforms" unique_id=1600741870 instance=ExtResource("5_68o2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 12.5)
+physics_material_override = SubResource("PhysicsMaterial_ape2j")
+
+[node name="Explosives" type="Node3D" parent="." unique_id=437667993]
+
+[node name="Explosive" parent="Explosives" unique_id=1510714197 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.402508, 0, -13.984204)
+
+[node name="Explosive2" parent="Explosives" unique_id=1600737677 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.078229, 0, 1.4666808)
+
+[node name="Explosive3" parent="Explosives" unique_id=239010671 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.953249, 0, 8.0078)
+
+[node name="Explosive4" parent="Explosives" unique_id=2029958013 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6319181, 0, 13.3724985)
+
+[node name="Explosive5" parent="Explosives" unique_id=909042537 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.246452, 0, 2.3697026)
+
+[node name="Explosive6" parent="Explosives" unique_id=1146809055 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.816703, 0, 9.745629)
+
+[node name="Explosive7" parent="Explosives" unique_id=1577036840 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.795281, 0, 1.0563333)
+
+[node name="Explosive8" parent="Explosives" unique_id=216359735 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.674269, 0, -7.4178143)
+
+[node name="Explosive9" parent="Explosives" unique_id=164174706 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.183164, 0, -14.036225)
+
+[node name="Explosive10" parent="Explosives" unique_id=1553291096 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.324265, 0, 2.4795535)
+
+[node name="Explosive11" parent="Explosives" unique_id=2069424450 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.076264, 0, -9.726845)
+
+[node name="Explosive12" parent="Explosives" unique_id=1456617714 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.271404, 0, 7.038911)
+
+[node name="Explosive13" parent="Explosives" unique_id=699068095 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.647817, 0, -1.070079)
+
+[node name="Explosive14" parent="Explosives" unique_id=104332556 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2323124, 1.9073486e-06, -5.317597)
+
+[node name="Explosive15" parent="Explosives" unique_id=1965673457 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3123617, 0, -14.006774)
+
+[node name="Explosive16" parent="Explosives" unique_id=1374765331 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2557241, 0, 5.5162992)
+
+[node name="Explosive17" parent="Explosives" unique_id=86480272 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2019596, 0, -2.9669585)
+
+[node name="Explosive18" parent="Explosives" unique_id=1617240137 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9906287, 0, -6.89334)
+
+[node name="Explosive19" parent="Explosives" unique_id=2118540402 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.258528, 0, -10.546101)
+
+[node name="Explosive20" parent="Explosives" unique_id=1250570100 instance=ExtResource("7_6q10f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1619425, 0, -10.371126)
+
+[node name="EventTimer" type="Timer" parent="." unique_id=1984779494]
+one_shot = true
+
+[node name="RoundEndWindow" type="Window" parent="." unique_id=2067309159]
+unique_name_in_owner = true
+transparent_bg = true
+oversampling_override = 1.0
+title = "Round Ended"
+position = Vector2i(0, 36)
+size = Vector2i(300, 150)
+visible = false
+unresizable = true
+transparent = true
+script = ExtResource("7_eymk5")
+
+[node name="RoundEndLabel" type="Label" parent="RoundEndWindow" unique_id=148401700]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_jra2i")
+horizontal_alignment = 1
+
+[node name="HostButtonsHBoxContainer" type="HBoxContainer" parent="RoundEndWindow" unique_id=1300275827]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DisconnectButton" type="Button" parent="RoundEndWindow/HostButtonsHBoxContainer" unique_id=1274162693]
+custom_minimum_size = Vector2(125, 32)
+layout_mode = 2
+text = "Disconnect"
+
+[node name="PlayAgainButton" type="Button" parent="RoundEndWindow/HostButtonsHBoxContainer" unique_id=1729275404]
+custom_minimum_size = Vector2(125, 32)
+layout_mode = 2
+text = "Play again"
+
+[node name="ClientButtonsHBoxContainer" type="HBoxContainer" parent="RoundEndWindow" unique_id=2098904215]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DisconnectButton" type="Button" parent="RoundEndWindow/ClientButtonsHBoxContainer" unique_id=802283687]
+custom_minimum_size = Vector2(125, 32)
+layout_mode = 2
+text = "Disconnect"
+
+[node name="CloseButton" type="Button" parent="RoundEndWindow/ClientButtonsHBoxContainer" unique_id=871274543]
+custom_minimum_size = Vector2(125, 32)
+layout_mode = 2
+text = "Close"
+
+[node name="ButtonSounds" type="Node" parent="RoundEndWindow" unique_id=292218806]
+script = ExtResource("9_jra2i")
+
+[node name="SpawnPositions" type="Node3D" parent="." unique_id=408690931]
+
+[node name="1" type="Marker3D" parent="SpawnPositions" unique_id=428588880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+
+[node name="2" type="Marker3D" parent="SpawnPositions" unique_id=1303027287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+
+[node name="3" type="Marker3D" parent="SpawnPositions" unique_id=462923375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+
+[node name="4" type="Marker3D" parent="SpawnPositions" unique_id=85756239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+
+[node name="5" type="Marker3D" parent="SpawnPositions" unique_id=2078078990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="6" type="Marker3D" parent="SpawnPositions" unique_id=1890217943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="7" type="Marker3D" parent="SpawnPositions" unique_id=1346721881]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="8" type="Marker3D" parent="SpawnPositions" unique_id=856633827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="RoundAutoRestartTimer" type="Timer" parent="." unique_id=1379879263]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="TouchControl" type="Control" parent="." unique_id=329948100]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_68o2v")
+
+[node name="MovementVirtualJoystick" type="VirtualJoystick" parent="TouchControl" unique_id=848766644]
+layout_mode = 1
+scale = Vector2(1.5, 1.5)
+joystick_mode = 1
+visibility_mode = 1
+
+[node name="JumpButton" type="Control" parent="TouchControl" unique_id=915556010]
+layout_mode = 1
+anchor_left = 0.855
+anchor_top = 0.27
+anchor_right = 0.855
+anchor_bottom = 0.27
+mouse_filter = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchControl/JumpButton" unique_id=1810461093]
+shape = SubResource("CircleShape2D_eymk5")
+action = "ui_accept"
+
+[node name="Panel" type="Panel" parent="TouchControl/JumpButton" unique_id=817248088]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_68o2v")
+
+[node name="Label" type="Label" parent="TouchControl/JumpButton/Panel" unique_id=768931872]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jump"
+label_settings = SubResource("LabelSettings_68o2v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DashButton" type="Control" parent="TouchControl" unique_id=2104777733]
+layout_mode = 1
+anchor_left = 0.855
+anchor_top = 0.725
+anchor_right = 0.855
+anchor_bottom = 0.725
+mouse_filter = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchControl/DashButton" unique_id=1927652994]
+shape = SubResource("CircleShape2D_eymk5")
+action = "dash"
+
+[node name="Panel" type="Panel" parent="TouchControl/DashButton" unique_id=1854406705]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_68o2v")
+
+[node name="Label" type="Label" parent="TouchControl/DashButton/Panel" unique_id=1472734581]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dash"
+label_settings = SubResource("LabelSettings_68o2v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="EventTimer" to="." method="_on_event_timer_timeout"]
+[connection signal="close_requested" from="RoundEndWindow" to="." method="hide_round_end_screen"]
+[connection signal="close_requested" from="RoundEndWindow" to="RoundEndWindow/ButtonSounds" method="play_click_sound"]
+[connection signal="button_down" from="RoundEndWindow/HostButtonsHBoxContainer/DisconnectButton" to="RoundEndWindow/ButtonSounds" method="play_click_sound"]
+[connection signal="mouse_entered" from="RoundEndWindow/HostButtonsHBoxContainer/DisconnectButton" to="RoundEndWindow/ButtonSounds" method="play_hover_sound"]
+[connection signal="pressed" from="RoundEndWindow/HostButtonsHBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="RoundEndWindow/HostButtonsHBoxContainer/DisconnectButton" to="RoundEndWindow" method="hide"]
+[connection signal="button_down" from="RoundEndWindow/HostButtonsHBoxContainer/PlayAgainButton" to="RoundEndWindow/ButtonSounds" method="play_click_sound"]
+[connection signal="mouse_entered" from="RoundEndWindow/HostButtonsHBoxContainer/PlayAgainButton" to="RoundEndWindow/ButtonSounds" method="play_hover_sound"]
+[connection signal="pressed" from="RoundEndWindow/HostButtonsHBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="RoundEndWindow/HostButtonsHBoxContainer/PlayAgainButton" to="RoundEndWindow" method="hide"]
+[connection signal="button_down" from="RoundEndWindow/ClientButtonsHBoxContainer/DisconnectButton" to="RoundEndWindow/ButtonSounds" method="play_click_sound"]
+[connection signal="mouse_entered" from="RoundEndWindow/ClientButtonsHBoxContainer/DisconnectButton" to="RoundEndWindow/ButtonSounds" method="play_hover_sound"]
+[connection signal="pressed" from="RoundEndWindow/ClientButtonsHBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="RoundEndWindow/ClientButtonsHBoxContainer/DisconnectButton" to="RoundEndWindow" method="hide"]
+[connection signal="button_down" from="RoundEndWindow/ClientButtonsHBoxContainer/CloseButton" to="RoundEndWindow/ButtonSounds" method="play_click_sound"]
+[connection signal="mouse_entered" from="RoundEndWindow/ClientButtonsHBoxContainer/CloseButton" to="RoundEndWindow/ButtonSounds" method="play_hover_sound"]
+[connection signal="pressed" from="RoundEndWindow/ClientButtonsHBoxContainer/CloseButton" to="." method="hide_round_end_screen"]
+[connection signal="timeout" from="RoundAutoRestartTimer" to="." method="restart_round"]

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bqj7ykndu5uce"]
+
+[ext_resource type="Script" uid="uid://b0aud4fuob8qh" path="res://assets/scripts/player.gd" id="1_5ov36"]
+[ext_resource type="Material" uid="uid://bdogfrejqbu5m" path="res://assets/resources/outline.tres" id="2_5ov36"]
+[ext_resource type="Script" uid="uid://cjcw6smkw6lic" path="res://assets/scripts/player_host_authority.gd" id="3_6rjsx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8cprv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hdmdu"]
+resource_local_to_scene = true
+radius = 0.47
+height = 0.94
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5ov36"]
+height = 0.27021486
+radius = 0.1
+
+[node name="Player" type="RigidBody3D" unique_id=333305729 node_paths=PackedStringArray("nickname_Label", "light", "no_rotation", "ground_trigger")]
+collision_layer = 2
+collision_mask = 3
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_5ov36")
+speed = 25.0
+jump_force = 6.5
+in_air_speed_multiplier = 0.25
+dash_multiplier = 0.8
+nickname_Label = NodePath("NoRotation/NicknameLabel3D")
+light = NodePath("NoRotation/OmniLight3D")
+no_rotation = NodePath("NoRotation")
+ground_trigger = NodePath("NoRotation/Area3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=581321732]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_8cprv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=405387285]
+mesh = SubResource("SphereMesh_hdmdu")
+surface_material_override/0 = ExtResource("2_5ov36")
+
+[node name="HostAuthority" type="Node3D" parent="." unique_id=121441732]
+script = ExtResource("3_6rjsx")
+
+[node name="NoRotation" type="Node3D" parent="." unique_id=537823081]
+top_level = true
+
+[node name="NicknameLabel3D" type="Label3D" parent="NoRotation" unique_id=1750302126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+pixel_size = 0.002
+billboard = 1
+double_sided = false
+text = "HI"
+font_size = 64
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NoRotation" unique_id=1190324746 groups=["PlayerLight"]]
+visible = false
+light_energy = 0.5
+omni_range = 3.0
+
+[node name="Area3D" type="Area3D" parent="NoRotation" unique_id=369284027]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NoRotation/Area3D" unique_id=339327551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56482434, 0)
+shape = SubResource("CylinderShape3D_5ov36")
+debug_color = Color(0, 0.7, 0.3733333, 0.41960785)
+
+[node name="DashServerCooldownTimer" type="Timer" parent="." unique_id=1655911407]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="DashServerCooldownTimer" to="." method="_on_dash_server_cooldown_timeout"]

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://du80mp11n2uvb"]
+
+[ext_resource type="Script" uid="uid://c35aorpm1wq1a" path="res://assets/scripts/error_window.gd" id="1_bemuv"]
+[ext_resource type="AudioStream" uid="uid://b8xdp26bjlt43" path="res://assets/third-party/kenney.nl/interface-sounds/drop_003.ogg" id="3_wplq7"]
+[ext_resource type="AudioStream" uid="uid://b5f8w3k6e2ox6" path="res://assets/third-party/kenney.nl/interface-sounds/glass_002.ogg" id="4_re3tu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_misth"]
+font_size = 20
+
+[node name="ErrorWindow" type="Window" unique_id=284639929]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Error!"
+position = Vector2i(0, 36)
+size = Vector2i(400, 150)
+transparent = true
+script = ExtResource("1_bemuv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1558986600]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=166464112]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_misth")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=685011609]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="ButtonClickSound" type="AudioStreamPlayer" parent="." unique_id=563983955]
+stream = ExtResource("3_wplq7")
+volume_db = -5.0
+bus = &"UI"
+
+[node name="ButtonHoverSound" type="AudioStreamPlayer" parent="." unique_id=2012929213]
+stream = ExtResource("4_re3tu")
+volume_db = -15.0
+bus = &"UI"
+
+[connection signal="close_requested" from="." to="." method="_on_quit_button_pressed"]
+[connection signal="close_requested" from="." to="ButtonClickSound" method="play"]
+[connection signal="button_down" from="VBoxContainer/QuitButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

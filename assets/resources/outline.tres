@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bdogfrejqbu5m"]
+
+[ext_resource type="Texture2D" uid="uid://b6fg60tnhyj0d" path="res://assets/textures/sphere.png" id="1_3dfrq"]
+[ext_resource type="Shader" uid="uid://bgg1i1jl0wgwy" path="res://assets/shaders/outline.gdshader" id="1_plsi6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ov36"]
+resource_local_to_scene = true
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.3
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
+emission_texture = ExtResource("1_3dfrq")
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_5ov36")
+shader = ExtResource("1_plsi6")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/size = 1.05

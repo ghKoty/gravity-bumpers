@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ddql3yamwoluv"]
+
+[ext_resource type="Script" uid="uid://bcwtt1y8mssp" path="res://assets/scripts/lan_lobby_panel.gd" id="1_drt1y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6rsl6"]
+
+[node name="LobbyButton" type="PanelContainer" unique_id=1803126046]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6rsl6")
+script = ExtResource("1_drt1y")
+
+[node name="Button" type="Button" parent="." unique_id=82194804]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1228589786]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="NicknameLabel" type="Label" parent="MarginContainer" unique_id=56283250]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="IPLabel" type="Label" parent="MarginContainer" unique_id=1668576984]
+unique_name_in_owner = true
+modulate = Color(0.65, 0.65, 0.65, 1)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="RemoveTimer" type="Timer" parent="." unique_id=1205634865]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="RemoveTimer" to="." method="_on_remove_timer_timeout"]
