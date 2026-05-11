@@ -65,11 +65,11 @@ func _physics_process(_delta: float) -> void:
     if is_multiplayer_authority():
         if not round_ended:
             if Main.lobby_players_ids.size() > 1 and Main.alive_players_ids.size() == 1:
-                show_round_end_screen.rpc(Main.alive_players_ids[0])
+                show_round_end_screen.rpc(false, Main.alive_players_ids[0])
                 Main.spawned_players[Main.alive_players_ids[0]].die()
                 stop_round()
             elif Main.alive_players_ids.is_empty():
-                show_round_end_screen_tie.rpc()
+                show_round_end_screen.rpc()
                 stop_round()
 
 
@@ -122,21 +122,31 @@ func stop_round() -> void:
     round_ended = true
 
 
-@rpc("authority", "call_local", "reliable") func show_round_end_screen(winner_player_id: int) -> void:
-    %RoundEndLabel.text = "%s won!" % Main.lobby_players_nicknames[winner_player_id]
-    $RoundEndWindow.popup_centered()
-    MouseManager.use_mouse($RoundEndWindow)
-
-
-@rpc("authority", "call_local", "reliable") func show_round_end_screen_tie() -> void:
-    %RoundEndLabel.text = "Tie! (No one won)"
-    $RoundEndWindow.popup_centered()
-    MouseManager.use_mouse($RoundEndWindow)
+@rpc("authority", "call_local", "reliable") func show_round_end_screen(is_tie: bool = true, winner_player_id: int = -1) -> void:
+    if is_tie:
+        %RoundEndLabel.text = "Tie! (No one won)"
+    else:
+        %RoundEndLabel.text = "%s won!" % Main.lobby_players_nicknames[winner_player_id]
+    fix_touch_joystick()
+    for i in 2:
+        await get_tree().process_frame
+    %RoundEndWindow.popup_centered()
+    MouseManager.use_mouse(%RoundEndWindow)
 
 
 @rpc("authority", "call_local", "reliable") func hide_round_end_screen() -> void:
-    $RoundEndWindow.hide()
-    MouseManager.free_mouse($RoundEndWindow)
+    %RoundEndWindow.hide()
+    MouseManager.free_mouse(%RoundEndWindow)
+
+
+func fix_touch_joystick() -> void:
+    # HACK: Sends empty InputEventScreenTouch to unpress joystick
+    var event: InputEventScreenTouch
+    for i in range(10):
+        event = InputEventScreenTouch.new()
+        event.position = %MovementVirtualJoystick.position + %MovementVirtualJoystick.scale / get_tree().root.content_scale_factor / 2
+        event.index = i
+        Input.parse_input_event(event)
 
 
 func _on_play_again_button_pressed() -> void:
@@ -181,7 +191,7 @@ func _on_event_timer_timeout() -> void:
 
 
 func _on_disconnect_button_pressed() -> void:
-    Main.instance.leave_lobby()
+    Main.instance.leave_lobby_and_host()
 
 
 static func is_available() -> bool:

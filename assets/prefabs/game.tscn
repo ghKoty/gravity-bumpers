@@ -519,6 +519,7 @@ mouse_filter = 2
 script = ExtResource("8_68o2v")
 
 [node name="MovementVirtualJoystick" type="VirtualJoystick" parent="TouchControl" unique_id=848766644]
+unique_name_in_owner = true
 layout_mode = 1
 scale = Vector2(1.5, 1.5)
 joystick_mode = 1
