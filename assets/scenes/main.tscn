@@ -569,6 +569,7 @@ horizontal_alignment = 2
 [node name="SensitivitySlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=445446561]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 min_value = 0.05
 max_value = 4.0
 step = 0.05
@@ -585,15 +586,21 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Auto Restart"
 
 [node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2" unique_id=879569807]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "?"
 flat = true
 script = ExtResource("9_p5d64")
 help_text = "Automatically restarts round after 3 seconds"
+
+[node name="Spacer3" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=168044662]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 
 [node name="TouchControlsHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=445072422]
 layout_mode = 2
@@ -602,6 +609,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Show Touch Controls"
 
 [node name="GraphicsSettingsContainer" type="ScrollContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=751851824]
@@ -628,11 +636,13 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Fullscreen"
 
 [node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer" unique_id=1777522944]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "?"
 flat = true
 script = ExtResource("9_p5d64")
@@ -661,6 +671,7 @@ horizontal_alignment = 2
 [node name="UIScaleSlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=1745845169]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 min_value = 0.5
 max_value = 2.0
 step = 0.05
@@ -686,6 +697,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 item_count = 4
 popup/item_0/text = "Disabled"
 popup/item_0/id = 0
@@ -699,6 +711,7 @@ popup/item_3/id = 3
 [node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/AAHBoxContainer" unique_id=1296859682]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "?"
 flat = true
 script = ExtResource("9_p5d64")
@@ -727,14 +740,16 @@ horizontal_alignment = 2
 [node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/RenderScaleHBoxContainer" unique_id=1055795263]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "?"
 flat = true
 script = ExtResource("9_p5d64")
-help_text = "Adjusts the internal resolution of 3D rendering without changing the UI sharpness. Lowering this value can drastically boost FPS on low-end devices at the cost of some image clarity."
+help_text = "Adjusts the internal resolution of 3D rendering without changing the UI sharpness. Lowering this value can drastically boost FPS on low-end devices at the cost of some image clarity. Set this to 100% if you experience random crashes."
 
 [node name="RenderScaleSlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=40849777]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 min_value = 0.5
 max_value = 1.0
 step = 0.05
@@ -752,15 +767,17 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Glow"
 
 [node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/GlowHBoxContainer" unique_id=1723136774]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "?"
 flat = true
 script = ExtResource("9_p5d64")
-help_text = "Makes bright areas of the screen bleed light into surrounding areas, creating a photographic \"bloom\" effect. Adds realism to light sources, but can increase GPU load."
+help_text = "Makes bright areas of the screen bleed light into surrounding areas, creating a photographic \"bloom\" effect. Adds realism to light sources, but can increase GPU load. Disable this if you experience random crashes."
 
 [node name="Spacer5" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=362511305]
 custom_minimum_size = Vector2(0, 15)
@@ -773,15 +790,21 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Dynamic Lights"
 
 [node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/DynamicLightsHBoxContainer" unique_id=1575472207]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+mouse_filter = 1
 text = "?"
 flat = true
 script = ExtResource("9_p5d64")
 help_text = "Enables real-time light sources attached to players. Disabling this can significantly improve performance on slow devices."
+
+[node name="Spacer6" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=339888105]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 
 [node name="FremerateHBoxContainer2" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer" unique_id=69754023]
 layout_mode = 2
@@ -790,6 +813,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 text = "Show Framerate"
 
 [node name="AuthenticationTimers" type="Node" parent="." unique_id=363857355]
@@ -818,7 +842,7 @@ mouse_filter = 2
 max_value = 2.0
 show_percentage = false
 
-[node name="Control" type="Control" parent="HUD/VBoxContainer" unique_id=1559615340]
+[node name="Separator" type="Control" parent="HUD/VBoxContainer" unique_id=1559615340]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 mouse_filter = 2

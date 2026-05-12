@@ -154,6 +154,8 @@ func die() -> void:
 
 
 func revive() -> void:
+    dash_server_cooldown_timer.stop()
+    _on_dash_server_cooldown_timeout()
     Main.alive_players_ids.append(get_multiplayer_authority())
     global_position = GameInstance.spawn_positions[player_number]
     host_authority.revive_rpc.rpc()

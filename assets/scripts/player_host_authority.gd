@@ -19,4 +19,6 @@ func _ready() -> void:
 
 
 @rpc("authority", "call_local", "reliable") func revive_rpc() -> void:
+    Main.dash_client_cooldown_timer.stop()
+    player._on_dash_client_cooldown_timeout()
     player.visible = true

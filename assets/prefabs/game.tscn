@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ilve6n2lw1x" path="res://assets/prefabs/explosive.scn" id="7_6q10f"]
 [ext_resource type="Script" uid="uid://dp58rmja51h2v" path="res://assets/scripts/center_window.gd" id="7_eymk5"]
 [ext_resource type="Script" uid="uid://c1w8nl6jqmap1" path="res://assets/scripts/touch_control.gd" id="8_68o2v"]
+[ext_resource type="Texture2D" uid="uid://c0ha58yrvw5be" path="res://assets/resources/menu-icon.svg" id="9_6alsc"]
 [ext_resource type="Script" uid="uid://cxhgm2hjghkea" path="res://assets/scripts/button_sounds.gd" id="9_jra2i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_68o2v"]
@@ -164,6 +165,18 @@ corner_detail = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_68o2v"]
 font_size = 24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68o2v"]
+size = Vector2(75, 75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jra2i"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_bottom_left = 20
+corner_detail = 10
 
 [node name="Game" type="Node3D" unique_id=542532392]
 script = ExtResource("1_1ybja")
@@ -590,6 +603,36 @@ text = "Dash"
 label_settings = SubResource("LabelSettings_68o2v")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MenuButton" type="Control" parent="TouchControl" unique_id=407788488]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+mouse_filter = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchControl/MenuButton" unique_id=1554184417]
+position = Vector2(-37.5, 37.5)
+shape = SubResource("RectangleShape2D_68o2v")
+action = "ui_cancel"
+
+[node name="Panel" type="Panel" parent="TouchControl/MenuButton" unique_id=953862437]
+layout_mode = 0
+offset_left = -75.0
+offset_bottom = 75.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jra2i")
+
+[node name="TextureRect" type="TextureRect" parent="TouchControl/MenuButton/Panel" unique_id=1309858424]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_6alsc")
+expand_mode = 3
 
 [connection signal="timeout" from="EventTimer" to="." method="_on_event_timer_timeout"]
 [connection signal="close_requested" from="RoundEndWindow" to="." method="hide_round_end_screen"]

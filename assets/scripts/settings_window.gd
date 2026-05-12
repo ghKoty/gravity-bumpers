@@ -39,7 +39,7 @@ func _ready() -> void:
     var touch_controls_enabled = GameConfig.get_key("touch_controls")
     if touch_controls_enabled:
         %TouchControlsCheckButton.button_pressed = touch_controls_enabled
-    elif OS.has_feature("mobile"):
+    elif DisplayServer.is_touchscreen_available():
         GameConfig.set_key("touch_controls", true)
         %TouchControlsCheckButton.button_pressed = true
 

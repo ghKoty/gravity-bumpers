@@ -147,7 +147,6 @@ static func get_username_by_id(peer_id: int) -> String:
 func leave_lobby() -> void:
     %StartButton.disabled = true
     if ingame:
-        
         for element in elements_to_hide_ingame:
             element.show()
         for element in elements_to_show_ingame:
@@ -173,8 +172,11 @@ func leave_lobby() -> void:
     $Dialogs/InLobbyDialog.hide()
 
 
-func leave_lobby_and_host() -> void:
+func leave_lobby_and_host(should_await: bool = false) -> void:
     leave_lobby()
+    
+    if should_await:
+        await get_tree().process_frame
     
     if not force_skip_host:
         host()
@@ -410,7 +412,7 @@ func kick_from_lobby(id_to_kick: int, reason: String = "Disconnected: %s", reaso
 
 ## Handles the local disconnection logic when kicked by the host.
 @rpc("authority", "call_remote", "reliable") func disconnect_from_lobby(reason: String, reason_args: Array = []) -> void:
-    leave_lobby_and_host()
+    leave_lobby_and_host(true)
     %KickedDialogLabel.text = reason % reason_args
     $Dialogs/KickedAcceptDialog.popup_centered()
 
