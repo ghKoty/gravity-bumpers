@@ -542,31 +542,43 @@ tab_count = 2
 tab_0/title = "General"
 tab_1/title = "Graphics"
 
-[node name="GeneralSettingsContainer" type="VBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=720869768]
+[node name="GeneralSettingsContainer" type="ScrollContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=574521060]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Spacer" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=1651303237]
+[node name="MarginContainer" type="MarginContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=2036619338]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer" unique_id=1601630829]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=1651303237]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=849094156]
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=849094156]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/HBoxContainer" unique_id=387180899]
+[node name="Label" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=387180899]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "Mouse Sensitivity"
 
-[node name="SensitivityLabel" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/HBoxContainer" unique_id=288383583]
+[node name="SensitivityLabel" type="Label" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=288383583]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "0.00"
 horizontal_alignment = 2
 
-[node name="SensitivitySlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=445446561]
+[node name="SensitivitySlider" type="HSlider" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=445446561]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
@@ -575,21 +587,21 @@ max_value = 4.0
 step = 0.05
 value = 0.1
 
-[node name="Spacer2" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=1999571075]
+[node name="Spacer2" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=1999571075]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="AutoRestartHBoxContainer2" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=385090207]
+[node name="AutoRestartHBoxContainer2" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=385090207]
 layout_mode = 2
 
-[node name="AutoRestartCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2" unique_id=363342626]
+[node name="AutoRestartCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2" unique_id=363342626]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 text = "Auto Restart"
 
-[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2" unique_id=879569807]
+[node name="HelpButton" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2" unique_id=879569807]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -598,19 +610,42 @@ flat = true
 script = ExtResource("9_p5d64")
 help_text = "Automatically restarts round after 3 seconds"
 
-[node name="Spacer3" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=168044662]
+[node name="Spacer3" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=168044662]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="TouchControlsHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer" unique_id=445072422]
+[node name="TouchControlsHBoxContainer" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=445072422]
 layout_mode = 2
 
-[node name="TouchControlsCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer" unique_id=1560443055]
+[node name="TouchControlsCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/TouchControlsHBoxContainer" unique_id=1560443055]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 text = "Show Touch Controls"
+
+[node name="Spacer4" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=285553868]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="AxialDeadzoneHBoxContainer2" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=35718801]
+layout_mode = 2
+
+[node name="AxialDeadzoneCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2" unique_id=1663551487]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "Axial Deadzone"
+
+[node name="HelpButton2" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2" unique_id=903133048]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "When enabled, makes it easier to move in a perfectly straight line (forward, backward, left, or right) with joystick by ignoring accidental slight tilts to the sides."
 
 [node name="GraphicsSettingsContainer" type="ScrollContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=751851824]
 unique_name_in_owner = true
@@ -968,17 +1003,23 @@ color = Color(0, 0, 0, 0)
 [connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/TabBar" to="ButtonHoverSound" method="play"]
 [connection signal="tab_hovered" from="Dialogs/SettingsWindow/VBoxContainer/TabBar" to="Dialogs/SettingsWindow" method="_on_tab_bar_tab_hovered"]
 [connection signal="tab_selected" from="Dialogs/SettingsWindow/VBoxContainer/TabBar" to="Dialogs/SettingsWindow" method="_on_tab_bar_tab_selected"]
-[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/SensitivitySlider" to="ButtonHoverSound" method="play"]
-[connection signal="value_changed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/SensitivitySlider" to="Dialogs/SettingsWindow" method="_on_sensitivity_slider_value_changed"]
-[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="ButtonClickSound" method="play"]
-[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="ButtonHoverSound" method="play"]
-[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="Dialogs/SettingsWindow" method="_on_auto_restart_check_button_toggled"]
-[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" to="ButtonClickSound" method="play"]
-[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" to="ButtonHoverSound" method="play"]
-[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/AutoRestartHBoxContainer2/HelpButton" method="show_help"]
-[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="ButtonClickSound" method="play"]
-[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="ButtonHoverSound" method="play"]
-[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="Dialogs/SettingsWindow" method="_on_touch_controls_check_button_toggled"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/SensitivitySlider" to="ButtonHoverSound" method="play"]
+[connection signal="value_changed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/SensitivitySlider" to="Dialogs/SettingsWindow" method="_on_sensitivity_slider_value_changed"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/AutoRestartCheckButton" to="Dialogs/SettingsWindow" method="_on_auto_restart_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/HelpButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/HelpButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/HelpButton" to="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AutoRestartHBoxContainer2/HelpButton" method="show_help"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/TouchControlsHBoxContainer/TouchControlsCheckButton" to="Dialogs/SettingsWindow" method="_on_touch_controls_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/AxialDeadzoneCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/AxialDeadzoneCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/AxialDeadzoneCheckButton" to="Dialogs/SettingsWindow" method="_on_axial_deadzone_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" to="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" method="show_help"]
 [connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="ButtonHoverSound" method="play"]
 [connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="Dialogs/SettingsWindow" method="_on_fullscreen_check_button_toggled"]

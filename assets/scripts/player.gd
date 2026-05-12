@@ -2,6 +2,8 @@ class_name Player
 extends RigidBody3D
 ## Logic for the physics-based player character.
 
+const AXIAL_DEADZONE = 0.4
+
 ## Player`s movement speed.
 @export var speed: float = 1
 ## Upward impulse force applied to player when jumping.
@@ -35,6 +37,7 @@ var is_dash_in_client_cooldown: bool
 var velocity_history: Array[Vector3]
 var player_number: int = 0
 var jump_cooldown: int = 0
+var axial_deadzone_enabled: bool
 
 @onready var dash_server_cooldown_timer = $DashServerCooldownTimer as Timer
 @onready var host_authority = $HostAuthority as PlayerHostAuthority
@@ -45,13 +48,15 @@ func _ready() -> void:
         freeze = true
     
     if is_multiplayer_authority():
+        SettingsWindow.instance.axial_deadzone_changed.connect(_on_axial_deadzone_enabled)
+        axial_deadzone_enabled = GameConfig.get_key("axial_deadzone", true)
         Main.dash_client_cooldown_timer.timeout.connect(_on_dash_client_cooldown_timeout)
         Main.camera_container.reparent(no_rotation)
     
     nickname_Label.text = Main.lobby_players_nicknames[get_multiplayer_authority()]
     nickname_Label.modulate = player_color
     light.light_color = player_color
-    light.visible = GameConfig.get_key("dynamic_lights", false)
+    light.visible = GameConfig.get_key("dynamic_lights", true)
     var material = $MeshInstance3D.get_surface_override_material(0) as ShaderMaterial
     material.set_shader_parameter("color", player_color)
     material.next_pass.emission = player_color
@@ -68,6 +73,14 @@ func _process(_delta: float) -> void:
         Main.dash_cooldown_indicator.value = Main.dash_client_cooldown_timer.time_left
         
         input_vector = Input.get_vector("ui_up", "ui_down", "ui_right", "ui_left")
+        
+        if axial_deadzone_enabled:
+            input_vector = input_vector.normalized()
+            if absf(input_vector.x) < AXIAL_DEADZONE:
+                input_vector.x = 0
+            if absf(input_vector.y) < AXIAL_DEADZONE:
+                input_vector.y = 0
+        
         input_vector = input_vector.rotated(-Main.camera_container.global_rotation.y)
         
         if ground_trigger.get_overlapping_bodies().size() > 0 and Input.is_action_just_pressed("ui_accept"):
@@ -169,6 +182,10 @@ func _on_dash_client_cooldown_timeout() -> void:
 
 func _on_dash_server_cooldown_timeout() -> void:
     is_dash_in_server_cooldown = false
+
+
+func _on_axial_deadzone_enabled(enabled: bool) -> void:
+    axial_deadzone_enabled = enabled
 
 
 ## Synchronizes movement inputs from the local client to the server.

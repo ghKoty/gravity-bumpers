@@ -1,12 +1,18 @@
 class_name SettingsWindow
 extends CenterWindow
 
+signal axial_deadzone_changed(enabled: bool)
+
+static var instance: SettingsWindow
+
 enum TABS {
     General,
     Graphics
 }
 
 func _ready() -> void:
+    instance = self
+    
     %SensitivitySlider.value = GameConfig.get_key("sensitivity", 1)
     %UIScaleSlider.value = GameConfig.get_key("ui_scale", 1)
     %RenderScaleSlider.value = GameConfig.get_key("render_scale", 1)
@@ -25,8 +31,9 @@ func _ready() -> void:
         %FullscreenCheckButton.button_pressed = GameConfig.get_key("fullscreen", false)
     
     %AutoRestartCheckButton.button_pressed = GameConfig.get_key("auto_restart", false)
-    %GlowCheckButton.button_pressed = GameConfig.get_key("glow", true)
+    %GlowCheckButton.button_pressed = GameConfig.get_key("glow", false)
     %DynamicLightsCheckButton.button_pressed = GameConfig.get_key("dynamic_lights", true)
+    %AxialDeadzoneCheckButton.button_pressed = GameConfig.get_key("axial_deadzone", true)
     
     var show_fps: bool = GameConfig.get_key("show_fps", false)
     %FramerateCheckButton.button_pressed = show_fps
@@ -145,3 +152,8 @@ func _on_touch_controls_check_button_toggled(toggled_on: bool) -> void:
 func set_touch_controls(enabled: bool) -> void:
     if GameInstance.touch_controls and is_instance_valid(GameInstance.touch_controls):
         GameInstance.touch_controls.visible = enabled
+
+
+func _on_axial_deadzone_check_button_toggled(toggled_on: bool) -> void:
+    GameConfig.set_key("axial_deadzone", toggled_on)
+    axial_deadzone_changed.emit(toggled_on)

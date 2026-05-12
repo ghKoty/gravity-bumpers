@@ -37,9 +37,6 @@ glow_hdr_scale = 0.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_kpi06"]
 radius = 0.1
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68o2v"]
-resource_local_to_scene = true
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jra2i"]
 resource_local_to_scene = true
 
@@ -145,6 +142,9 @@ resource_local_to_scene = true
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ape2j"]
 resource_local_to_scene = true
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xgffq"]
+resource_local_to_scene = true
+
 [sub_resource type="LabelSettings" id="LabelSettings_jra2i"]
 font_size = 20
 
@@ -210,147 +210,147 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Platform1" parent="Platforms" unique_id=754744748 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
-physics_material_override = SubResource("PhysicsMaterial_68o2v")
+physics_material_override = SubResource("PhysicsMaterial_jra2i")
 
 [node name="Platform2" parent="Platforms" unique_id=1141480080 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -2.5)
-physics_material_override = SubResource("PhysicsMaterial_jra2i")
+physics_material_override = SubResource("PhysicsMaterial_6alsc")
 
 [node name="Platform3" parent="Platforms" unique_id=435841429 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.5)
-physics_material_override = SubResource("PhysicsMaterial_6alsc")
+physics_material_override = SubResource("PhysicsMaterial_6q10f")
 
 [node name="Platform4" parent="Platforms" unique_id=2089154002 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
-physics_material_override = SubResource("PhysicsMaterial_6q10f")
+physics_material_override = SubResource("PhysicsMaterial_t4s70")
 
 [node name="Platform5" parent="Platforms" unique_id=217560682 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
-physics_material_override = SubResource("PhysicsMaterial_t4s70")
+physics_material_override = SubResource("PhysicsMaterial_oy38a")
 
 [node name="Platform6" parent="Platforms" unique_id=1674497801 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
-physics_material_override = SubResource("PhysicsMaterial_oy38a")
+physics_material_override = SubResource("PhysicsMaterial_1dhit")
 
 [node name="Platform7" parent="Platforms" unique_id=739547612 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 7.5)
-physics_material_override = SubResource("PhysicsMaterial_1dhit")
+physics_material_override = SubResource("PhysicsMaterial_3f0sx")
 
 [node name="Platform8" parent="Platforms" unique_id=1454716703 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2.5)
-physics_material_override = SubResource("PhysicsMaterial_3f0sx")
+physics_material_override = SubResource("PhysicsMaterial_5kjyk")
 
 [node name="Platform9" parent="Platforms" unique_id=1242009765 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
-physics_material_override = SubResource("PhysicsMaterial_5kjyk")
+physics_material_override = SubResource("PhysicsMaterial_f78nd")
 
 [node name="Platform10" parent="Platforms" unique_id=1949616604 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -7.5)
-physics_material_override = SubResource("PhysicsMaterial_f78nd")
+physics_material_override = SubResource("PhysicsMaterial_c343q")
 
 [node name="Platform11" parent="Platforms" unique_id=254762224 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -7.5)
-physics_material_override = SubResource("PhysicsMaterial_c343q")
+physics_material_override = SubResource("PhysicsMaterial_de0ba")
 
 [node name="Platform12" parent="Platforms" unique_id=493589839 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -7.5)
-physics_material_override = SubResource("PhysicsMaterial_de0ba")
+physics_material_override = SubResource("PhysicsMaterial_xk80i")
 
 [node name="Platform13" parent="Platforms" unique_id=604956867 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -7.5)
-physics_material_override = SubResource("PhysicsMaterial_xk80i")
+physics_material_override = SubResource("PhysicsMaterial_2b6ph")
 
 [node name="Platform14" parent="Platforms" unique_id=127967719 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -2.5)
-physics_material_override = SubResource("PhysicsMaterial_2b6ph")
+physics_material_override = SubResource("PhysicsMaterial_vp4y6")
 
 [node name="Platform15" parent="Platforms" unique_id=1952569472 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 2.5)
-physics_material_override = SubResource("PhysicsMaterial_vp4y6")
+physics_material_override = SubResource("PhysicsMaterial_13trc")
 
 [node name="Platform16" parent="Platforms" unique_id=1547713647 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 7.5)
-physics_material_override = SubResource("PhysicsMaterial_13trc")
+physics_material_override = SubResource("PhysicsMaterial_17j0n")
 
 [node name="Platform17" parent="Platforms" unique_id=1267097430 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 12.5)
-physics_material_override = SubResource("PhysicsMaterial_17j0n")
+physics_material_override = SubResource("PhysicsMaterial_u0cyj")
 
 [node name="Platform18" parent="Platforms" unique_id=469765519 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 12.5)
-physics_material_override = SubResource("PhysicsMaterial_u0cyj")
+physics_material_override = SubResource("PhysicsMaterial_lcuog")
 
 [node name="Platform19" parent="Platforms" unique_id=1847119640 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 12.5)
-physics_material_override = SubResource("PhysicsMaterial_lcuog")
+physics_material_override = SubResource("PhysicsMaterial_o30o1")
 
 [node name="Platform20" parent="Platforms" unique_id=2012763048 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 12.5)
-physics_material_override = SubResource("PhysicsMaterial_o30o1")
+physics_material_override = SubResource("PhysicsMaterial_iu0s8")
 
 [node name="Platform21" parent="Platforms" unique_id=1823360737 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 12.5)
-physics_material_override = SubResource("PhysicsMaterial_iu0s8")
+physics_material_override = SubResource("PhysicsMaterial_p2ktf")
 
 [node name="Platform22" parent="Platforms" unique_id=2138927400 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 7.5)
-physics_material_override = SubResource("PhysicsMaterial_p2ktf")
+physics_material_override = SubResource("PhysicsMaterial_5nk7h")
 
 [node name="Platform23" parent="Platforms" unique_id=1711368903 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 2.5)
-physics_material_override = SubResource("PhysicsMaterial_5nk7h")
+physics_material_override = SubResource("PhysicsMaterial_12j5i")
 
 [node name="Platform24" parent="Platforms" unique_id=2128786872 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -2.5)
-physics_material_override = SubResource("PhysicsMaterial_12j5i")
+physics_material_override = SubResource("PhysicsMaterial_2w57o")
 
 [node name="Platform25" parent="Platforms" unique_id=94270557 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -7.5)
-physics_material_override = SubResource("PhysicsMaterial_2w57o")
+physics_material_override = SubResource("PhysicsMaterial_jvkn1")
 
 [node name="Platform26" parent="Platforms" unique_id=2027117532 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, -12.5)
-physics_material_override = SubResource("PhysicsMaterial_jvkn1")
+physics_material_override = SubResource("PhysicsMaterial_2nonb")
 
 [node name="Platform27" parent="Platforms" unique_id=1365141320 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -12.5)
-physics_material_override = SubResource("PhysicsMaterial_2nonb")
+physics_material_override = SubResource("PhysicsMaterial_vw2fe")
 
 [node name="Platform28" parent="Platforms" unique_id=442183784 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -12.5)
-physics_material_override = SubResource("PhysicsMaterial_vw2fe")
+physics_material_override = SubResource("PhysicsMaterial_0512g")
 
 [node name="Platform29" parent="Platforms" unique_id=47867723 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -12.5)
-physics_material_override = SubResource("PhysicsMaterial_0512g")
+physics_material_override = SubResource("PhysicsMaterial_efg6g")
 
 [node name="Platform30" parent="Platforms" unique_id=420465656 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -12.5)
-physics_material_override = SubResource("PhysicsMaterial_efg6g")
+physics_material_override = SubResource("PhysicsMaterial_hk5o2")
 
 [node name="Platform31" parent="Platforms" unique_id=323849591 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -12.5)
-physics_material_override = SubResource("PhysicsMaterial_hk5o2")
+physics_material_override = SubResource("PhysicsMaterial_3jgmu")
 
 [node name="Platform32" parent="Platforms" unique_id=1810178411 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -7.5)
-physics_material_override = SubResource("PhysicsMaterial_3jgmu")
+physics_material_override = SubResource("PhysicsMaterial_ci2bs")
 
 [node name="Platform33" parent="Platforms" unique_id=1223407793 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, -2.5)
-physics_material_override = SubResource("PhysicsMaterial_ci2bs")
+physics_material_override = SubResource("PhysicsMaterial_4hh05")
 
 [node name="Platform34" parent="Platforms" unique_id=50832748 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 2.5)
-physics_material_override = SubResource("PhysicsMaterial_4hh05")
+physics_material_override = SubResource("PhysicsMaterial_vydip")
 
 [node name="Platform35" parent="Platforms" unique_id=417901809 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 7.5)
-physics_material_override = SubResource("PhysicsMaterial_vydip")
+physics_material_override = SubResource("PhysicsMaterial_ape2j")
 
 [node name="Platform36" parent="Platforms" unique_id=1600741870 instance=ExtResource("5_68o2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 12.5)
-physics_material_override = SubResource("PhysicsMaterial_ape2j")
+physics_material_override = SubResource("PhysicsMaterial_xgffq")
 
 [node name="Explosives" type="Node3D" parent="." unique_id=437667993]
 
@@ -606,6 +606,7 @@ vertical_alignment = 1
 
 [node name="MenuButton" type="Control" parent="TouchControl" unique_id=407788488]
 layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 mouse_filter = 2

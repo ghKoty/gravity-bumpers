@@ -53,7 +53,6 @@ text = "HI"
 font_size = 64
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NoRotation" unique_id=1190324746 groups=["PlayerLight"]]
-visible = false
 light_energy = 0.5
 omni_range = 3.0
 
