@@ -15,7 +15,7 @@ height = 0.94
 height = 0.27021486
 radius = 0.1
 
-[node name="Player" type="RigidBody3D" unique_id=333305729 node_paths=PackedStringArray("nickname_Label", "light", "no_rotation", "ground_trigger")]
+[node name="Player" type="RigidBody3D" unique_id=333305729 node_paths=PackedStringArray("nickname_Label", "light", "no_rotation", "ground_trigger") groups=["LateJoinReplication"]]
 collision_layer = 2
 collision_mask = 3
 contact_monitor = true

@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://7vm2cqd5sfvw" path="res://assets/scripts/lan_join_window.gd" id="5_6rsl6"]
 [ext_resource type="Script" uid="uid://hvj24q21cq2j" path="res://assets/scripts/lan_manual_join_window.gd" id="5_xplbd"]
 [ext_resource type="Script" uid="uid://c1sxa0uldiq8i" path="res://assets/scripts/settings_window.gd" id="7_6rsl6"]
+[ext_resource type="Script" uid="uid://cbpieuvyiy2gd" path="res://assets/scripts/update_notification_window.gd" id="7_ua5jh"]
 [ext_resource type="Script" uid="uid://xjyhxe1tr7ct" path="res://assets/scripts/console_placeholder.gd" id="7_xplbd"]
 [ext_resource type="Script" uid="uid://3eur1rol8lx2" path="res://assets/scripts/help_button.gd" id="9_p5d64"]
 [ext_resource type="Script" uid="uid://p2wiu1i8rco1" path="res://assets/scripts/framerate_panel.gd" id="10_48cn3"]
+[ext_resource type="Script" uid="uid://ejwx58r720hn" path="res://assets/scripts/dedicated_server_interface.gd" id="11_ov4sg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nb5qc"]
 font_size = 24
@@ -219,6 +221,7 @@ bus = &"UI"
 [node name="Dialogs" type="Node" parent="." unique_id=938120878]
 
 [node name="LanJoinWindow" type="Window" parent="Dialogs" unique_id=721035876]
+unique_name_in_owner = true
 process_mode = 4
 transparent_bg = true
 oversampling_override = 1.0
@@ -269,6 +272,7 @@ text = "Cancel"
 autostart = true
 
 [node name="LanManualJoinWindow" type="Window" parent="Dialogs" unique_id=1740090144]
+unique_name_in_owner = true
 transparent_bg = true
 oversampling_override = 1.0
 title = "Join by IP"
@@ -310,7 +314,50 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 
-[node name="KickedAcceptDialog" type="Window" parent="Dialogs" unique_id=975821845]
+[node name="UpdateNotificationWindow" type="Window" parent="Dialogs" unique_id=1962564275]
+transparent_bg = true
+oversampling_override = 1.0
+title = "New Update Available"
+position = Vector2i(0, 36)
+size = Vector2i(400, 140)
+visible = false
+unresizable = true
+transparent = true
+popup_window = true
+script = ExtResource("7_ua5jh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/UpdateNotificationWindow" unique_id=1473878077]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Dialogs/UpdateNotificationWindow/VBoxContainer" unique_id=821919015]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogs/UpdateNotificationWindow/VBoxContainer" unique_id=1358645380]
+layout_mode = 2
+
+[node name="OpenButton" type="Button" parent="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer" unique_id=1052212077]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Download"
+
+[node name="CloseButton" type="Button" parent="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer" unique_id=973974860]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Dialogs/UpdateNotificationWindow" unique_id=1755346816]
+timeout = 10.0
+
+[node name="KickedDialog" type="Window" parent="Dialogs" unique_id=975821845]
+unique_name_in_owner = true
 transparent_bg = true
 oversampling_override = 1.0
 title = "Disconnected"
@@ -321,7 +368,7 @@ unresizable = true
 transparent = true
 script = ExtResource("1_mr7gh")
 
-[node name="KickedDialogLabel" type="Label" parent="Dialogs/KickedAcceptDialog" unique_id=104530230]
+[node name="KickedDialogLabel" type="Label" parent="Dialogs/KickedDialog" unique_id=104530230]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -331,7 +378,7 @@ grow_vertical = 2
 size_flags_vertical = 0
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="Dialogs/KickedAcceptDialog" unique_id=1815051726]
+[node name="ContinueButton" type="Button" parent="Dialogs/KickedDialog" unique_id=1815051726]
 custom_minimum_size = Vector2(150, 32)
 anchors_preset = 7
 anchor_left = 0.5
@@ -383,7 +430,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Continue"
 
-[node name="AboutAcceptDialog" type="Window" parent="Dialogs" unique_id=2128544616]
+[node name="AboutDialog" type="Window" parent="Dialogs" unique_id=2128544616]
 transparent_bg = true
 oversampling_override = 1.0
 title = "About"
@@ -394,23 +441,23 @@ unresizable = true
 transparent = true
 script = ExtResource("1_mr7gh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/AboutAcceptDialog" unique_id=1467516199]
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/AboutDialog" unique_id=1467516199]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Dialogs/AboutAcceptDialog/VBoxContainer" unique_id=861461610]
+[node name="ScrollContainer" type="ScrollContainer" parent="Dialogs/AboutDialog/VBoxContainer" unique_id=861461610]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/AboutAcceptDialog/VBoxContainer/ScrollContainer" unique_id=1931796650]
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogs/AboutDialog/VBoxContainer/ScrollContainer" unique_id=1931796650]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CreditsLabel" type="RichTextLabel" parent="Dialogs/AboutAcceptDialog/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1830214640]
+[node name="CreditsLabel" type="RichTextLabel" parent="Dialogs/AboutDialog/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1830214640]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -453,13 +500,14 @@ scroll_active = false
 horizontal_alignment = 1
 selection_enabled = true
 
-[node name="OKButton" type="Button" parent="Dialogs/AboutAcceptDialog/VBoxContainer" unique_id=336664304]
+[node name="OKButton" type="Button" parent="Dialogs/AboutDialog/VBoxContainer" unique_id=336664304]
 custom_minimum_size = Vector2(150, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "OK"
 
 [node name="InLobbyDialog" type="Window" parent="Dialogs" unique_id=170784750]
+unique_name_in_owner = true
 transparent_bg = true
 oversampling_override = 1.0
 title = "Waiting"
@@ -646,6 +694,29 @@ text = "?"
 flat = true
 script = ExtResource("9_p5d64")
 help_text = "When enabled, makes it easier to move in a perfectly straight line (forward, backward, left, or right) with joystick by ignoring accidental slight tilts to the sides."
+
+[node name="Spacer5" type="Control" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=1944492574]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="UpdateCheckHBoxContainer3" type="HBoxContainer" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer" unique_id=278826848]
+layout_mode = 2
+
+[node name="UpdateCheckCheckButton" type="CheckButton" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3" unique_id=2021443455]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "Check For Updates"
+
+[node name="HelpButton2" type="Button" parent="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3" unique_id=464297325]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+mouse_filter = 1
+text = "?"
+flat = true
+script = ExtResource("9_p5d64")
+help_text = "When enabled, the game will automatically check for newer versions on startup to ensure you have access to the latest features, bug fixes, and compatibility improvements."
 
 [node name="GraphicsSettingsContainer" type="ScrollContainer" parent="Dialogs/SettingsWindow/VBoxContainer" unique_id=751851824]
 unique_name_in_owner = true
@@ -853,35 +924,6 @@ text = "Show Framerate"
 
 [node name="AuthenticationTimers" type="Node" parent="." unique_id=363857355]
 
-[node name="HUD" type="CenterContainer" parent="." unique_id=944784123]
-unique_name_in_owner = true
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -68.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 0
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1632716166]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="DashCooldownIndicator" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=48289326]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 10)
-layout_mode = 2
-mouse_filter = 2
-max_value = 2.0
-show_percentage = false
-
-[node name="Separator" type="Control" parent="HUD/VBoxContainer" unique_id=1559615340]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-mouse_filter = 2
-
 [node name="DashClientCooldownTimer" type="Timer" parent="." unique_id=1195113913]
 unique_name_in_owner = true
 wait_time = 3.0
@@ -935,6 +977,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
+[node name="DedicatedServerInterface" type="Node" parent="." unique_id=1237341284]
+script = ExtResource("11_ov4sg")
+
 [connection signal="visibility_changed" from="Menu" to="." method="_on_menu_visibility_changed"]
 [connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/ContinueButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/ContinueButton" to="ButtonHoverSound" method="play"]
@@ -955,7 +1000,7 @@ color = Color(0, 0, 0, 0)
 [connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/SettingsButton" to="Dialogs/SettingsWindow" method="popup_centered"]
 [connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="ButtonHoverSound" method="play"]
-[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="Dialogs/AboutAcceptDialog" method="popup_centered"]
+[connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/AboutButton" to="Dialogs/AboutDialog" method="popup_centered"]
 [connection signal="button_down" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="ButtonHoverSound" method="play"]
 [connection signal="pressed" from="Menu/CenterContainer/PanelContainer/VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
@@ -981,22 +1026,31 @@ color = Color(0, 0, 0, 0)
 [connection signal="button_down" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="ButtonHoverSound" method="play"]
 [connection signal="pressed" from="Dialogs/LanManualJoinWindow/VBoxContainer/HBoxContainer/CancelButton" to="Dialogs/LanManualJoinWindow" method="hide"]
-[connection signal="close_requested" from="Dialogs/KickedAcceptDialog" to="ButtonClickSound" method="play"]
-[connection signal="close_requested" from="Dialogs/KickedAcceptDialog" to="Dialogs/KickedAcceptDialog" method="hide"]
-[connection signal="button_down" from="Dialogs/KickedAcceptDialog/ContinueButton" to="ButtonClickSound" method="play"]
-[connection signal="mouse_entered" from="Dialogs/KickedAcceptDialog/ContinueButton" to="ButtonHoverSound" method="play"]
-[connection signal="pressed" from="Dialogs/KickedAcceptDialog/ContinueButton" to="Dialogs/KickedAcceptDialog" method="hide"]
+[connection signal="close_requested" from="Dialogs/UpdateNotificationWindow" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/UpdateNotificationWindow" to="Dialogs/UpdateNotificationWindow" method="hide"]
+[connection signal="button_down" from="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer/OpenButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer/OpenButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer/OpenButton" to="Dialogs/UpdateNotificationWindow" method="_on_open_button_pressed"]
+[connection signal="button_down" from="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer/CloseButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer/CloseButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/UpdateNotificationWindow/VBoxContainer/HBoxContainer/CloseButton" to="Dialogs/UpdateNotificationWindow" method="hide"]
+[connection signal="request_completed" from="Dialogs/UpdateNotificationWindow/HTTPRequest" to="Dialogs/UpdateNotificationWindow" method="_on_http_request_request_completed"]
+[connection signal="close_requested" from="Dialogs/KickedDialog" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/KickedDialog" to="Dialogs/KickedDialog" method="hide"]
+[connection signal="button_down" from="Dialogs/KickedDialog/ContinueButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/KickedDialog/ContinueButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/KickedDialog/ContinueButton" to="Dialogs/KickedDialog" method="hide"]
 [connection signal="close_requested" from="Dialogs/LANDiscoveryFailedDialog" to="ButtonClickSound" method="play"]
 [connection signal="close_requested" from="Dialogs/LANDiscoveryFailedDialog" to="Dialogs/LANDiscoveryFailedDialog" method="hide"]
 [connection signal="button_down" from="Dialogs/LANDiscoveryFailedDialog/ContinueButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Dialogs/LANDiscoveryFailedDialog/ContinueButton" to="ButtonHoverSound" method="play"]
 [connection signal="pressed" from="Dialogs/LANDiscoveryFailedDialog/ContinueButton" to="Dialogs/LANDiscoveryFailedDialog" method="hide"]
-[connection signal="close_requested" from="Dialogs/AboutAcceptDialog" to="ButtonClickSound" method="play"]
-[connection signal="close_requested" from="Dialogs/AboutAcceptDialog" to="Dialogs/AboutAcceptDialog" method="hide"]
-[connection signal="meta_clicked" from="Dialogs/AboutAcceptDialog/VBoxContainer/ScrollContainer/VBoxContainer/CreditsLabel" to="." method="_on_credits_label_meta_clicked"]
-[connection signal="button_down" from="Dialogs/AboutAcceptDialog/VBoxContainer/OKButton" to="ButtonClickSound" method="play"]
-[connection signal="mouse_entered" from="Dialogs/AboutAcceptDialog/VBoxContainer/OKButton" to="ButtonHoverSound" method="play"]
-[connection signal="pressed" from="Dialogs/AboutAcceptDialog/VBoxContainer/OKButton" to="Dialogs/AboutAcceptDialog" method="hide"]
+[connection signal="close_requested" from="Dialogs/AboutDialog" to="ButtonClickSound" method="play"]
+[connection signal="close_requested" from="Dialogs/AboutDialog" to="Dialogs/AboutDialog" method="hide"]
+[connection signal="meta_clicked" from="Dialogs/AboutDialog/VBoxContainer/ScrollContainer/VBoxContainer/CreditsLabel" to="." method="_on_credits_label_meta_clicked"]
+[connection signal="button_down" from="Dialogs/AboutDialog/VBoxContainer/OKButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/AboutDialog/VBoxContainer/OKButton" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/AboutDialog/VBoxContainer/OKButton" to="Dialogs/AboutDialog" method="hide"]
 [connection signal="pressed" from="Dialogs/InLobbyDialog/LeaveButton" to="." method="leave_lobby"]
 [connection signal="close_requested" from="Dialogs/SettingsWindow" to="ButtonClickSound" method="play"]
 [connection signal="close_requested" from="Dialogs/SettingsWindow" to="Dialogs/SettingsWindow" method="hide"]
@@ -1020,6 +1074,12 @@ color = Color(0, 0, 0, 0)
 [connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" to="ButtonHoverSound" method="play"]
 [connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" to="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/AxialDeadzoneHBoxContainer2/HelpButton2" method="show_help"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/UpdateCheckCheckButton" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/UpdateCheckCheckButton" to="ButtonHoverSound" method="play"]
+[connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/UpdateCheckCheckButton" to="Dialogs/SettingsWindow" method="_on_update_check_check_button_toggled"]
+[connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/HelpButton2" to="ButtonClickSound" method="play"]
+[connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/HelpButton2" to="ButtonHoverSound" method="play"]
+[connection signal="pressed" from="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/HelpButton2" to="Dialogs/SettingsWindow/VBoxContainer/GeneralSettingsContainer/MarginContainer/VBoxContainer/UpdateCheckHBoxContainer3/HelpButton2" method="show_help"]
 [connection signal="button_down" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="ButtonClickSound" method="play"]
 [connection signal="mouse_entered" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="ButtonHoverSound" method="play"]
 [connection signal="toggled" from="Dialogs/SettingsWindow/VBoxContainer/GraphicsSettingsContainer/MarginContainer/VBoxContainer/FullscreenHBoxContainer/FullscreenCheckButton" to="Dialogs/SettingsWindow" method="_on_fullscreen_check_button_toggled"]

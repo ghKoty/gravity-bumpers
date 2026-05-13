@@ -7,24 +7,27 @@ extends Node3D
 func _ready() -> void:
     if is_multiplayer_authority():
         recover()
+    else:
+        $Area3D/CollisionShape3D.disabled = true
+        $RigidBody3D/CollisionShape3D.disabled = true
 
 
 func spawn() -> void:
     $Area3D/CollisionShape3D.disabled = false
+    $RigidBody3D/CollisionShape3D.disabled = false
     spawn_rpc.rpc()
 
 @rpc("authority", "call_local", "reliable") func spawn_rpc() -> void:
-    $RigidBody3D/CollisionShape3D.disabled = false
     $Cylinder.show()
 
 
 func recover() -> void:
     $Area3D/CollisionShape3D.disabled = true
+    $RigidBody3D/CollisionShape3D.disabled = true
     if is_multiplayer_authority():
         recover_rpc.rpc()
 
 @rpc("authority", "call_local", "reliable") func recover_rpc() -> void:
-    $RigidBody3D/CollisionShape3D.disabled = true
     $Cylinder.hide()
 
 
@@ -47,3 +50,18 @@ func explode() -> void:
 func _on_area_3d_body_entered(_body: Node3D) -> void:
     if is_multiplayer_authority():
         explode()
+
+
+func dump_multiplayer_node_state() -> Dictionary:
+    var data := {
+        "state": $Cylinder.visible
+    }
+    
+    return data
+
+
+func replicate_multiplayer_node_state(data: Dictionary) -> void:
+    if data["state"]:
+        spawn_rpc()
+    else:
+        recover_rpc()

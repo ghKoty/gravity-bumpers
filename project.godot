@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Gravity Bumpers"
 config/description="By ghKoty"
-config/version="0.9.0"
+config/version="1.0.0"
 run/main_scene="uid://k43vbpdmcxxc"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "GL Compatibility")
@@ -49,6 +49,7 @@ folder_colors={
 [global_group]
 
 PlayerLight=""
+LateJoinReplication="This group is used to perform a batched state transfer for late-joining clients by serializing node properties and their paths into a single RPC payload"
 
 [gui]
 

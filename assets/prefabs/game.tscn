@@ -194,15 +194,13 @@ sky_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CameraContainer" type="SpringArm3D" parent="DefaultCameraPosition" unique_id=587205962]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3806987, 0)
 shape = SubResource("SphereShape3D_kpi06")
 script = ExtResource("2_kpi06")
 desired_distance = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="DefaultCameraPosition/CameraContainer" unique_id=857859574]
 
-[node name="PlayersMultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1380677300]
-spawn_path = NodePath(".")
+[node name="Players" type="Node3D" parent="." unique_id=931956891]
 script = ExtResource("4_nf75y")
 
 [node name="Platforms" type="Node3D" parent="." unique_id=1714470393]
@@ -520,6 +518,35 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
+[node name="HUD" type="CenterContainer" parent="." unique_id=695796314]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1397785705]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DashCooldownIndicator" type="ProgressBar" parent="HUD/VBoxContainer" unique_id=1697861553]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 10)
+layout_mode = 2
+mouse_filter = 2
+max_value = 2.0
+show_percentage = false
+
+[node name="Separator" type="Control" parent="HUD/VBoxContainer" unique_id=360753665]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 2
+
 [node name="TouchControl" type="Control" parent="." unique_id=329948100]
 visible = false
 layout_mode = 3
@@ -609,6 +636,7 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+grow_horizontal = 0
 mouse_filter = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchControl/MenuButton" unique_id=1554184417]

@@ -9,7 +9,7 @@ var rot: Vector2
 
 func _ready() -> void:
     Main.camera_container = self
-    sensitivity = GameConfig.get_key("sensitivity", 1)
+    sensitivity = GameConfig.get_key("sensitivity")
 
 
 func _process(_delta: float) -> void:

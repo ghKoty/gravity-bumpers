@@ -49,14 +49,14 @@ func _ready() -> void:
     
     if is_multiplayer_authority():
         SettingsWindow.instance.axial_deadzone_changed.connect(_on_axial_deadzone_enabled)
-        axial_deadzone_enabled = GameConfig.get_key("axial_deadzone", true)
+        axial_deadzone_enabled = GameConfig.get_key("axial_deadzone")
         Main.dash_client_cooldown_timer.timeout.connect(_on_dash_client_cooldown_timeout)
-        Main.camera_container.reparent(no_rotation)
+        Main.camera_container.reparent(no_rotation, false)
     
     nickname_Label.text = Main.lobby_players_nicknames[get_multiplayer_authority()]
     nickname_Label.modulate = player_color
     light.light_color = player_color
-    light.visible = GameConfig.get_key("dynamic_lights", true)
+    light.visible = GameConfig.get_key("dynamic_lights")
     var material = $MeshInstance3D.get_surface_override_material(0) as ShaderMaterial
     material.set_shader_parameter("color", player_color)
     material.next_pass.emission = player_color
@@ -69,8 +69,8 @@ func _process(_delta: float) -> void:
     no_rotation.global_position = global_position
     
     if is_multiplayer_authority():
-        Main.dash_cooldown_indicator.visible = not Main.dash_client_cooldown_timer.is_stopped()
-        Main.dash_cooldown_indicator.value = Main.dash_client_cooldown_timer.time_left
+        GameInstance.dash_cooldown_indicator.visible = not Main.dash_client_cooldown_timer.is_stopped()
+        GameInstance.dash_cooldown_indicator.value = Main.dash_client_cooldown_timer.time_left
         
         input_vector = Input.get_vector("ui_up", "ui_down", "ui_right", "ui_left")
         
@@ -97,7 +97,7 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-    if Main.mp_peer.get_unique_id() == 1:
+    if not freeze and Main.mp_peer.get_unique_id() == 1:
         if jump_cooldown > 0:
             jump_cooldown -= 1
         
@@ -126,10 +126,6 @@ func _physics_process(_delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
     state.angular_velocity = state.angular_velocity.lerp(Vector3(rotation_vector.x, 0, rotation_vector.y), 0.2)
-
-
-func _exit_tree() -> void:
-    Main.dash_client_cooldown_timer.timeout.disconnect(_on_dash_client_cooldown_timeout)
 
 
 func _on_visibility_changed() -> void:
@@ -166,14 +162,31 @@ func die() -> void:
     position = Vector3(0, 1, 0)
 
 
-func revive() -> void:
+func revive(spawn_position: Vector3) -> void:
     dash_server_cooldown_timer.stop()
     _on_dash_server_cooldown_timeout()
     Main.alive_players_ids.append(get_multiplayer_authority())
-    global_position = GameInstance.spawn_positions[player_number]
+    global_position = spawn_position
     host_authority.revive_rpc.rpc()
     %CollisionShape3D.disabled = false
     freeze = false
+
+
+func dump_multiplayer_node_state() -> Dictionary:
+    var data := {
+        "file_path": get_scene_file_path(),
+        "is_visible": visible,
+        "multiplayer_authority": get_multiplayer_authority(),
+        "player_color": player_color
+    }
+    
+    return data
+
+
+func replicate_multiplayer_node_state(data: Dictionary) -> void:
+    visible = data["is_visible"]
+    set_multiplayer_authority(data["multiplayer_authority"])
+    player_color = data["player_color"]
 
 
 func _on_dash_client_cooldown_timeout() -> void:

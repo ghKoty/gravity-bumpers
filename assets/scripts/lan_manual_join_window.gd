@@ -16,10 +16,10 @@ func _on_ip_line_edit_text_changed(new_text: String) -> void:
 
 func _on_lan_join_button_pressed() -> void:
     Main.instance.lan_connect(%IPLineEdit.text)
+    %LanJoinWindow.hide()
     hide()
 
 
 func _on_ip_line_edit_text_submitted(new_text: String) -> void:
     if Main.is_ipv4_valid(new_text):
-        Main.instance.lan_connect(%IPLineEdit.text)
-        hide()
+        _on_lan_join_button_pressed()

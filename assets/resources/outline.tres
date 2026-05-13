@@ -10,7 +10,6 @@ metallic_specular = 1.0
 roughness = 0.3
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 2.0
 emission_operator = 1
 emission_texture = ExtResource("1_3dfrq")
 

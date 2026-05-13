@@ -69,5 +69,5 @@ func is_lobby_compatible(lobby_info: Dictionary) -> bool:
 
 
 func _on_lobby_advertisement_timer_timeout() -> void:
-    if Main.lobby_hosted and not Main.ingame:
+    if Main.lobby_hosted:
         broadcast_lobby()

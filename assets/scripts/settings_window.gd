@@ -13,9 +13,22 @@ enum TABS {
 func _ready() -> void:
     instance = self
     
-    %SensitivitySlider.value = GameConfig.get_key("sensitivity", 1)
-    %UIScaleSlider.value = GameConfig.get_key("ui_scale", 1)
-    %RenderScaleSlider.value = GameConfig.get_key("render_scale", 1)
+    check_default("sensitivity", 1)
+    check_default("ui_scale", 1)
+    check_default("render_scale", 1)
+    check_default("fullscreen", false)
+    check_default("auto_restart", false)
+    check_default("glow", false)
+    check_default("dynamic_lights", true)
+    check_default("axial_deadzone", true)
+    check_default("show_fps", false)
+    check_default("antialiasing", 0)
+    check_default("touch_controls", DisplayServer.is_touchscreen_available())
+    check_default("update_check", true)
+    
+    %SensitivitySlider.value = GameConfig.get_key("sensitivity")
+    %UIScaleSlider.value = GameConfig.get_key("ui_scale")
+    %RenderScaleSlider.value = GameConfig.get_key("render_scale")
     
     %SensitivityLabel.text = "%.2f" % %SensitivitySlider.value
     %UIScaleLabel.text = "%d%%" % int(%UIScaleSlider.value*100)
@@ -28,27 +41,26 @@ func _ready() -> void:
         %FullscreenCheckButton.disabled = true
         %FullscreenCheckButton.button_pressed = true
     else:
-        %FullscreenCheckButton.button_pressed = GameConfig.get_key("fullscreen", false)
+        %FullscreenCheckButton.button_pressed = GameConfig.get_key("fullscreen")
     
-    %AutoRestartCheckButton.button_pressed = GameConfig.get_key("auto_restart", false)
-    %GlowCheckButton.button_pressed = GameConfig.get_key("glow", false)
-    %DynamicLightsCheckButton.button_pressed = GameConfig.get_key("dynamic_lights", true)
-    %AxialDeadzoneCheckButton.button_pressed = GameConfig.get_key("axial_deadzone", true)
+    %AutoRestartCheckButton.button_pressed = GameConfig.get_key("auto_restart")
+    %GlowCheckButton.button_pressed = GameConfig.get_key("glow")
+    %DynamicLightsCheckButton.button_pressed = GameConfig.get_key("dynamic_lights")
+    %AxialDeadzoneCheckButton.button_pressed = GameConfig.get_key("axial_deadzone")
+    %TouchControlsCheckButton.button_pressed = GameConfig.get_key("touch_controls")
+    %UpdateCheckCheckButton.button_pressed = GameConfig.get_key("update_check")
     
-    var show_fps: bool = GameConfig.get_key("show_fps", false)
+    var show_fps: bool = GameConfig.get_key("show_fps")
     %FramerateCheckButton.button_pressed = show_fps
     %FrameratePanelContainer.visible = show_fps
     
-    var antialiasing: int = GameConfig.get_key("antialiasing", 0)
+    var antialiasing: int = GameConfig.get_key("antialiasing")
     %AAMenuButton.select(antialiasing)
     set_antialiasing(antialiasing)
-    
-    var touch_controls_enabled = GameConfig.get_key("touch_controls")
-    if touch_controls_enabled:
-        %TouchControlsCheckButton.button_pressed = touch_controls_enabled
-    elif DisplayServer.is_touchscreen_available():
-        GameConfig.set_key("touch_controls", true)
-        %TouchControlsCheckButton.button_pressed = true
+
+
+func check_default(key: String, default_value) -> void:
+    GameConfig.set_key(key, GameConfig.get_key(key, default_value))
 
 
 func _on_sensitivity_slider_value_changed(value: float) -> void:
@@ -157,3 +169,7 @@ func set_touch_controls(enabled: bool) -> void:
 func _on_axial_deadzone_check_button_toggled(toggled_on: bool) -> void:
     GameConfig.set_key("axial_deadzone", toggled_on)
     axial_deadzone_changed.emit(toggled_on)
+
+
+func _on_update_check_check_button_toggled(toggled_on: bool) -> void:
+    GameConfig.set_key("update_check", toggled_on)

@@ -7,28 +7,32 @@ const EVENT_TYPES: Array = ["platform_dissolve", "platform_dissolve", "platform_
 ## Contains self.
 static var instance: GameInstance
 ## Contains parent node of all players.
-static var players: MultiplayerSpawner
+static var players: Node3D
 static var default_camera_position: Marker3D
-static var spawn_positions: PackedVector3Array
 static var environment: Environment
 static var touch_controls: Control
+static var dash_cooldown_indicator: Range
 
 @export var min_event_time: float = 15
 @export var max_event_time: float = 35
+
+var spawn_positions: PackedVector3Array
 
 var round_ended: bool = true
 var platforms: Array[Array]
 var left_platforms: Array[Array]
 var platforms_to_turn_ice: Array[Platform]
+var free_spawn_positions: PackedVector3Array
 
 func _ready() -> void:
     default_camera_position = $DefaultCameraPosition
     instance = self
-    players = $PlayersMultiplayerSpawner
+    players = $Players
     environment = $WorldEnvironment.environment
     touch_controls = $TouchControl
+    dash_cooldown_indicator = %DashCooldownIndicator
     
-    environment.glow_enabled = GameConfig.get_key("glow", false)
+    environment.glow_enabled = GameConfig.get_key("glow")
     
     if is_multiplayer_authority():
         # For some reason i can`t just write %RoundEndWindow.close_requested.disconnect(hide_round_end_screen)
@@ -95,6 +99,7 @@ func start_event_timer() -> void:
 
 func clear_world() -> void:
     left_platforms = platforms.duplicate(true)
+    free_spawn_positions = spawn_positions.duplicate()
     
     for platform in $Platforms.get_children():
         platforms_to_turn_ice.append(platform)
@@ -109,14 +114,15 @@ func restart_round() -> void:
     %RoundAutoRestartTimer.stop()
     clear_world()
     for player in Main.spawned_players:
-        Main.spawned_players[player].revive()
+        Main.spawned_players[player].revive(free_spawn_positions[-1])
+        free_spawn_positions.remove_at(free_spawn_positions.size() - 1)
     hide_round_end_screen.rpc()
     round_ended = false
     start_event_timer()
 
 
 func stop_round() -> void:
-    if GameConfig.get_key("auto_restart", false):
+    if Main.is_dedicated_server or GameConfig.get_key("auto_restart"):
         %RoundAutoRestartTimer.start()
     $EventTimer.stop()
     round_ended = true
