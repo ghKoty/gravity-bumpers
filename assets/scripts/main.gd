@@ -316,8 +316,6 @@ func update_ui_elements(is_ingame: bool) -> void:
 
 #region Game Flow
 func start_game() -> void:
-    if not lan_mode:
-        steam_singleton.setLobbyJoinable(lobby_id, false)
     start_game_rpc.rpc()
     for player_id in lobby_players_ids:
         spawn_player(player_id)
@@ -502,11 +500,6 @@ func _on_authentication_timer_timeout(peer_id: int) -> void:
     
     if not is_multiplayer_authority() or peer_id in lobby_players_nicknames:
         return
-    
-    #if ingame:
-        #kick_from_lobby(peer_id, "DISCONECTED_GAME_ALREADY_STARTED")
-        #Console.instance.print_to_console("Auth: Peer %d(%s) authentication failed: game already started" % [peer_id, player_nickname])
-        #return
     
     if remote_version != ProjectSettings.get_setting("application/config/version"):
         kick_from_lobby(peer_id, "DISCONECTED_VERSIONS_MISMATCH", [ProjectSettings.get_setting("application/config/version"), remote_version])
