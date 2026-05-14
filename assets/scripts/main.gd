@@ -90,7 +90,7 @@ func _ready() -> void:
     Console.instance.print_to_console("Launching with cmdlne args: %s" % str(OS.get_cmdline_args()))
     
     if "--force-lan" in OS.get_cmdline_args():
-        Console.instance.print_to_console("Multiplayer: Steam initialization skipped because of --forcelan commandline argument")
+        Console.instance.print_to_console("Multiplayer: Steam initialization skipped because of --force-lan commandline argument")
         initialize_lan()
     elif Engine.has_singleton("Steam"):
         Console.instance.print_to_console("Multiplayer: Connecting to Steam...")
@@ -166,8 +166,8 @@ func leave_lobby() -> void:
     alive_players_ids.clear()
     
     if lobby_id != -1:
-        lobby_id = -1
         steam_singleton.leaveLobby(lobby_id)
+        lobby_id = -1
     
     mp_peer.close()
     multiplayer.set_multiplayer_peer(null)
@@ -400,7 +400,8 @@ func _on_lobby_joined(joined_lobby_id: int, _permissions: int, _locked: bool, re
             multiplayer.set_multiplayer_peer(mp_peer)
             lobby_players_ids = [mp_peer.get_unique_id()]
     else:
-        Console.instance.print_to_console("Lobby join error: %s" % [STEAM_CHAT_ROOM_ENTER_RESPONSE_NAMES[response]])
+        Console.instance.print_to_console("Lobby join error: %s" % STEAM_CHAT_ROOM_ENTER_RESPONSE_NAMES[response])
+        print_to_chat("Steam Lobby join error: %s" % STEAM_CHAT_ROOM_ENTER_RESPONSE_NAMES[response])
 #endregion
 
 
@@ -502,7 +503,7 @@ func _on_authentication_timer_timeout(peer_id: int) -> void:
         return
     
     if remote_version != ProjectSettings.get_setting("application/config/version"):
-        kick_from_lobby(peer_id, "DISCONECTED_VERSIONS_MISMATCH", [ProjectSettings.get_setting("application/config/version"), remote_version])
+        kick_from_lobby(peer_id, "DISCONNECTED_VERSIONS_MISMATCH", [ProjectSettings.get_setting("application/config/version"), remote_version])
         Console.instance.print_to_console("Auth: Peer %d(%s) authentication failed: versions mismatch" % [peer_id, player_nickname])
         return
     
